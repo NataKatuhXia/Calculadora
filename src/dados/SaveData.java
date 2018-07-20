@@ -4,13 +4,17 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import static java.nio.file.StandardCopyOption. *;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Properties;
 
 import interfaceG.GetProperties;
 
 /**
  * Classe responsavel por salvar os dados recebidos do programa em um arquivo
- * txt.
+ * .txt;
  * 
  * @author R-CALC
  * @since 1.0
@@ -77,12 +81,17 @@ public class SaveData {
 
 	public void SaveDates(String path) {
 		prop = GetProperties.getProp();
-		/*
-		 * Path path2 = FileSystems.getDefault().getPath(prop.getProperty("saveData"));
-		 * Path pathTarget = FileSystems.getDefault().getPath(path);
-		 * 
-		 * Falta salvar arquivo
-		 */
+
+		 Path path2 = FileSystems.getDefault().getPath(prop.getProperty("saveData"));
+		 Path pathTarget = FileSystems.getDefault().getPath(path);
+		 
+		try {
+			Files.copy(path2, pathTarget, REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erro: "+e.getMessage());
+		}
+
 		prop.replace("saveData", path);
 	}
 
