@@ -13,12 +13,14 @@ import javax.swing.JTextField;
 import dados.SaveData;
 import geometricShapes.Figuras;
 import interfaceG.InterfaceGrafica;
+
 /**
- * Classe utilizada para realizar o cálculo de area da ZonaEsferica
- * ,e apresentar os seus resultados na interface,e os salva em um arquivo txt.
+ * Classe utilizada para realizar o cálculo de area da ZonaEsferica ,e
+ * apresentar os seus resultados na interface,e os salva em um arquivo txt.
+ * 
  * @author R-CALC
- * @since 1.0	
- * @version 1.0	 
+ * @since 1.0
+ * @version 1.0
  */
 public class ZonaEsferica extends Figuras {
 	private double altura;
@@ -56,17 +58,17 @@ public class ZonaEsferica extends Figuras {
 						setArea(Integer.parseInt(Taltura.getText()), Integer.parseInt(Traio.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
-						rArea.setBounds(550, 300,250, 30);
+						rArea.setBounds(550, 300, 250, 30);
 						rArea.setFont(fonte);
 						painel2.add(rArea);
 						salvarDates();
 						painel2.repaint();
 					} catch (NumberFormatException | IOException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!", "Aviso!",
+					JOptionPane.showMessageDialog(null, "Não é permitido campos em branco!", "Aviso!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}

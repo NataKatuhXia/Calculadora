@@ -18,7 +18,7 @@ public class GetProperties {
 		Properties props = new Properties();
 		try {
 
-			FileInputStream file = new FileInputStream("./src/properties/listImages.properties");
+			FileInputStream file = new FileInputStream("./src/properties/listComandos.properties");
 			props.load(file);
 		} catch (IOException e) {
 			System.out.println("Erro: " + e.getMessage());

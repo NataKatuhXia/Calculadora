@@ -89,8 +89,8 @@ public class Piramide extends Figuras {
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rVolume.setText(" Volume: " + dV + " cm³");
-						rArea.setBounds(550, 300,250, 30);
-						rVolume.setBounds(545, 320,250, 30);
+						rArea.setBounds(550, 300, 250, 30);
+						rVolume.setBounds(545, 320, 250, 30);
 						rVolume.setFont(fonte);
 						rArea.setFont(fonte);
 						painel2.add(rVolume);
@@ -99,14 +99,14 @@ public class Piramide extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!", "Aviso!",
+					JOptionPane.showMessageDialog(null, "Não é permitido campos em branco!", "Aviso!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}

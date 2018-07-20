@@ -13,12 +13,14 @@ import javax.swing.JTextField;
 import dados.SaveData;
 import geometricShapes.Figuras;
 import interfaceG.InterfaceGrafica;
+
 /**
- * Classe utilizada para realizar o cálculo area do SetorCircular
- * ,e apresentar os seus resultados na interface,e os salva em um arquivo txt.
+ * Classe utilizada para realizar o cálculo area do SetorCircular ,e apresentar
+ * os seus resultados na interface,e os salva em um arquivo txt.
+ * 
  * @author R-CALC
- * @since 1.0	
- * @version 1.0	 
+ * @since 1.0
+ * @version 1.0
  */
 public class SetorCircular extends Figuras {
 	private double angulocentral;
@@ -65,22 +67,22 @@ public class SetorCircular extends Figuras {
 					try {
 						setArea(Integer.parseInt(Tangulo.getText()), Integer.parseInt(Traio.getText()));
 						dA = df.format(getArea());
-						rArea.setText("Área:      " + dA+" cm²");
-						rArea.setBounds(550, 300,250, 30);
+						rArea.setText("Área:      " + dA + " cm²");
+						rArea.setBounds(550, 300, 250, 30);
 						rArea.setFont(fonte);
 						painel2.add(rArea);
 						painel2.repaint();
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!", "Aviso!",
+					JOptionPane.showMessageDialog(null, "Não é permitido campos em branco!", "Aviso!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}

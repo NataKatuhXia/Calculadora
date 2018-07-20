@@ -13,12 +13,14 @@ import javax.swing.JTextField;
 import dados.SaveData;
 import geometricShapes.Figuras;
 import interfaceG.InterfaceGrafica;
+
 /**
- * Classe utilizada para realizar os cálculos de volume e area do PrismaReto
- * ,e apresentar os seus resultados na interface,e os salva em um arquivo txt.
+ * Classe utilizada para realizar os cálculos de volume e area do PrismaReto ,e
+ * apresentar os seus resultados na interface,e os salva em um arquivo txt.
+ * 
  * @author R-CALC
- * @since 1.0	
- * @version 1.0	 
+ * @since 1.0
+ * @version 1.0
  */
 public class PrismaReto extends Figuras {
 	private double altura;
@@ -84,10 +86,10 @@ public class PrismaReto extends Figuras {
 						setVolume(Integer.parseInt(Taltura.getText()), Integer.parseInt(Tabase.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
-						rArea.setText("Área:      " + dA+" cm²");
-						rVolume.setText(" Volume: " + dV+" cm³");
-						rArea.setBounds(550, 300,250, 30);
-						rVolume.setBounds(545, 320,250, 30);
+						rArea.setText("Área:      " + dA + " cm²");
+						rVolume.setText(" Volume: " + dV + " cm³");
+						rArea.setBounds(550, 300, 250, 30);
+						rVolume.setBounds(545, 320, 250, 30);
 						rVolume.setFont(fonte);
 						rArea.setFont(fonte);
 						painel2.add(rVolume);
@@ -96,14 +98,14 @@ public class PrismaReto extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!", "Aviso!",
+					JOptionPane.showMessageDialog(null, "Não é permitido campos em branco!", "Aviso!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}

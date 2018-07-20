@@ -90,14 +90,14 @@ public class Cilindro extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!", "Aviso!",
+					JOptionPane.showMessageDialog(null, "Não é permitido campos em branco!", "Aviso!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}

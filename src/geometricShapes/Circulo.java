@@ -13,11 +13,13 @@ import javax.swing.JTextField;
 import dados.SaveData;
 import geometricShapes.Figuras;
 import interfaceG.InterfaceGrafica;
+
 /**
  * Classe utilizada para realizar os cálculos de comprimento e area do Circulo
  * ,e apresentar os seus resultados na interface,e os salva em um arquivo txt.
+ * 
  * @author R-CALC
- * @since 1.0	
+ * @since 1.0
  * @version 1.0
  */
 public class Circulo extends Figuras {
@@ -82,10 +84,10 @@ public class Circulo extends Figuras {
 						setComprimento(Integer.parseInt(Traio.getText()));
 						dA = df.format(getArea());
 						dV = df.format(getComprimento());
-						rArea.setText("Área:      " + dA+" cm²");
-						rVolume.setText("Comp.:    " + dV+ " cm"); // Comprimento e não volume
-						rVolume.setBounds(545, 320,250, 30);
-						rArea.setBounds(550, 300,250, 30);
+						rArea.setText("Área:      " + dA + " cm²");
+						rVolume.setText("Comp.:    " + dV + " cm"); // Comprimento e não volume
+						rVolume.setBounds(545, 320, 250, 30);
+						rArea.setBounds(550, 300, 250, 30);
 						rArea.setFont(fonte);
 						rVolume.setFont(fonte);
 						painel2.add(rVolume);
@@ -94,14 +96,14 @@ public class Circulo extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, preencha corretamente todos os campos!", "Aviso!",
+					JOptionPane.showMessageDialog(null, "Não é permitido campos em branco!", "Aviso!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
