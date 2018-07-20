@@ -1,2 +1,3 @@
 # Calculadora
-Projeto para a matÃ©ria de POO
+
+Projeto de uma calculadora Gemétrica para a disciplina MATA- Programação Orientada a Objetos
