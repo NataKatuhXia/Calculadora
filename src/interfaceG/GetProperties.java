@@ -3,20 +3,26 @@ package interfaceG;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+
 /**
- * Classe responsavel por carregar as urls de todo programa 
- * como as imagens,ícones e arquivos txt através de uma key.
+ * Classe responsavel por carregar as urls de todo programa como as
+ * imagens,ícones e arquivos txt através de uma key.
+ * 
  * @author R-CALC
- * @since 1.0	
- * @version 1.0 
+ * @since 1.0
+ * @version 1.0
  */
 public class GetProperties {
 
-	public static Properties getProp() throws IOException {
+	public static Properties getProp() {
 		Properties props = new Properties();
-		FileInputStream file = new FileInputStream("./src/properties/listImages.properties");
-		props.load(file);
+		try {
 
+			FileInputStream file = new FileInputStream("./src/properties/listImages.properties");
+			props.load(file);
+		} catch (IOException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
 		return props;
 	}
 

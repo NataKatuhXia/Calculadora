@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -58,13 +60,9 @@ public class History extends GetProperties {
 		JButton btLimpar = new JButton("Limpar Histórico");
 		btLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					new SaveData().deleteDates();
-					lista.clear();
-					frameHist.dispose();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				new SaveData().deleteDates();
+				lista.clear();
+				frameHist.dispose();
 			}
 		});
 		btLimpar.setBounds(90, 300, 130, 23);
@@ -92,16 +90,29 @@ public class History extends GetProperties {
 
 		// Cria um submenu Historico
 		JMenuItem itemMenuSavarAs = new JMenuItem("Salvar como...");
+		itemMenuSavarAs.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser file = new JFileChooser();
+				file.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				int i = file.showSaveDialog(null);
+				if (i == 1) {
+					System.out.println("Nada");
+				} else {
+					File arquivo = file.getSelectedFile();
+					new SaveData().SaveDates(arquivo.getPath());
+				}
+
+			}
+		});
 
 		// Adcionar um icone ao Menu Salvar
-		try {
-			menuOpcoes.setIcon(
-					new ImageIcon(History.class.getResource(GetProperties.getProp().getProperty("icons.options"))));
-			itemMenuSavarAs.setIcon(
-					new ImageIcon(History.class.getResource(GetProperties.getProp().getProperty("icons.save"))));
-		} catch (IOException e) {
-			e.getMessage();
-		}
+		// JMenuItem itemMenuSave = new JMenuItem("Salvar");
+		menuOpcoes.setIcon(
+				new ImageIcon(History.class.getResource(GetProperties.getProp().getProperty("icons.options"))));
+		itemMenuSavarAs
+				.setIcon(new ImageIcon(History.class.getResource(GetProperties.getProp().getProperty("icons.save"))));
 		// Adiciona o Submenu no Menu Arquivo
 		menuOpcoes.add(itemMenuSavarAs);
 		// Adciona um Separador de itens no menu Arquivo

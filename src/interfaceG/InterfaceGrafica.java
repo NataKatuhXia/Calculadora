@@ -3,7 +3,6 @@ package interfaceG;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -34,7 +33,7 @@ public class InterfaceGrafica extends JFrame {
 	private JPanel painel2;
 	private Properties prop = GetProperties.getProp();
 
-	public InterfaceGrafica() throws IOException {
+	public InterfaceGrafica() {
 		/*
 		 * Metodo para Instanciar a JFrame E logo apos chama a Funçao para configurar a
 		 * JFrame
@@ -46,7 +45,7 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
-	private void inicializaComponente() throws IOException {
+	private void inicializaComponente() {
 		/*
 		 * Este metodo configura a JFrame de forma personalizada
 		 */
@@ -61,7 +60,7 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
-	private void montaJanela() throws IOException {
+	private void montaJanela() {
 
 		/*
 		 * Metodo para montar a JFrame A JFrame vai conter 3 Jpanel
@@ -82,7 +81,7 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
-	private JPanel montaPainel1() throws IOException {
+	private JPanel montaPainel1() {
 		/*
 		 * Metodo para montar o JPanel_1 JPanel vai conter o JLabel "Figura" e o
 		 * JComboBox Localizada na parte Superior da JFrame
@@ -115,7 +114,7 @@ public class InterfaceGrafica extends JFrame {
 		return painel1; // Retorna o JPanel personalizado
 	}
 
-	private JComboBox<ImageIcon> montaComboBox() throws IOException {
+	private JComboBox<ImageIcon> montaComboBox() {
 		/*
 		 * Metodo para montar o ComboBox] Metodo vai retornar o ComboBox pronto para ser
 		 * adicionado ao JPanel;
@@ -166,7 +165,7 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
-	private JMenuBar montaMenuBar() throws IOException {
+	private JMenuBar montaMenuBar() {
 		// Objeto que desenha a barra de Menu
 		JMenuBar barra = new JMenuBar();
 		// Cria o menu Arquivo que ficará na barra de Menu

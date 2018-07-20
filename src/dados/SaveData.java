@@ -26,7 +26,7 @@ public class SaveData {
 		super();
 	}
 
-	public SaveData(String nome, String area, String volume) throws IOException {
+	public SaveData(String nome, String area, String volume) {
 		this.nome = nome;
 		this.area = area;
 		this.volume = volume;
@@ -37,11 +37,11 @@ public class SaveData {
 		this(figura, area, "-");
 	}
 
-	public void deleteDates() throws IOException {
-		FileWriter arq = null;
-		prop = GetProperties.getProp();
+	public void deleteDates() {
 
 		try {
+			FileWriter arq = null;
+			prop = GetProperties.getProp();
 			arq = new FileWriter(prop.getProperty("saveData"));
 			arq.close();
 
@@ -53,12 +53,13 @@ public class SaveData {
 
 	}
 
-	private void SaveDates() throws IOException {
-		FileWriter arq = null;
-		BufferedWriter escritor = null;
-		prop = GetProperties.getProp();
+	private void SaveDates() {
 
 		try {
+			FileWriter arq = null;
+			BufferedWriter escritor = null;
+			prop = GetProperties.getProp();
+
 			arq = new FileWriter(prop.getProperty("saveData"), true);
 			escritor = new BufferedWriter(arq);
 			escritor.write(nome + ";" + area + ";" + volume);
@@ -72,6 +73,17 @@ public class SaveData {
 		} catch (IOException e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
+	}
+
+	public void SaveDates(String path) {
+		prop = GetProperties.getProp();
+		/*
+		 * Path path2 = FileSystems.getDefault().getPath(prop.getProperty("saveData"));
+		 * Path pathTarget = FileSystems.getDefault().getPath(path);
+		 * 
+		 * Falta salvar arquivo
+		 */
+		prop.replace("saveData", path);
 	}
 
 }
