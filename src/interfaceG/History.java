@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,6 +32,8 @@ public class History extends GetProperties {
 
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private ArrayList<String[]> lista = new ArrayList<>();
+	private Properties prop = getProp();
+	private JFrame frameHist = new JFrame("Histórico");
 
 	public History() {
 		criaJanela();
@@ -38,9 +41,9 @@ public class History extends GetProperties {
 
 	private void criaJanela() {
 
-		JFrame frameHist = new JFrame("Histórico");
-
 		frameHist.setJMenuBar((montaBarra()));
+
+		frameHist.setIconImage(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))).getImage());
 
 		JPanel painelBotoes = new JPanel();
 
@@ -83,27 +86,82 @@ public class History extends GetProperties {
 
 	private JMenuBar montaBarra() {
 		JMenuBar barra = new JMenuBar();
+
 		// Cria o menu Arquivo que ficará na barra de Menu
 		JMenuItem menuOpcoes = new JMenu("Opções");
 
-		// Cria um submenu Historico
+		// Cria um submenu Salvar Como
 		JMenuItem itemMenuSavarAs = new JMenuItem("Salvar como...");
+
+		// Criando a função do JMenuItem SalvarAs
 		itemMenuSavarAs.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Directory();
+				// Abrir o JFileChooser para o usuário decidir o local para salvar
+				new Directory().saveDirectory();
+
+			}
+		});
+
+		// Cria um submenu Abrir
+		JMenuItem itemMenuOpen = new JMenuItem("Abrir");
+
+		// Criando a função do JMenuItem Abrir
+		itemMenuOpen.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Abrir um histórico já utilizada do Usuário
+				if (new Directory().openDirectory() != 1) {
+					frameHist.dispose();
+				}
+
 			}
 		});
 
 		// Adcionar um icone ao Menu Salvar
-		// JMenuItem itemMenuSave = new JMenuItem("Salvar");
-		menuOpcoes.setIcon(
-				new ImageIcon(History.class.getResource(GetProperties.getProp().getProperty("icons.options"))));
-		itemMenuSavarAs
-				.setIcon(new ImageIcon(History.class.getResource(GetProperties.getProp().getProperty("icons.save"))));
-		// Adiciona o Submenu no Menu Arquivo
-		menuOpcoes.add(itemMenuSavarAs);
-		// Adciona um Separador de itens no menu Arquivo
+		JMenuItem itemMenuSavar = new JMenuItem("Salvar");
+
+		// Criando a função do JMenuItem Salvar
+		itemMenuSavar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * Verificando se o usuário já definiu o local do arquivo
+				 * 
+				 * Se não, o Sistema apresenta o JFileChooser para ele selecionar;
+				 * 
+				 * Se sim, como o sistema tem salvamento automático ele não irá apresentar
+				 * nenhuma informação inédita.
+				 */
+				if (prop.getProperty("CustomSave") == null) {
+					new Directory().saveDirectory();
+				}
+			}
+		});
+
+		// Defino os ícones de todos os elementos do JMenuBar
+		menuOpcoes.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.options"))));
+		itemMenuSavarAs.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.saveAs"))));
+		itemMenuSavar.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.save"))));
+		itemMenuOpen.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.open"))));
+
+		// Adiciona o Submenu "Abrir" no Menu Arquivo
+		menuOpcoes.add(itemMenuOpen);
+
+		// Adiciono um Separador entre os JMenusItens
 		((JMenu) menuOpcoes).addSeparator();
+
+		// Adiciona o Submenu "Salvar" no Menu Arquivo
+		menuOpcoes.add(itemMenuSavar);
+
+		// Adiciono um Separador entre os JMenusItens
+		((JMenu) menuOpcoes).addSeparator();
+
+		// Adciono o Submenu "Salvar Como" no Menu Arquivo
+		menuOpcoes.add(itemMenuSavarAs);
 		// Adiciona o menu Arquivo na barra de Menu
 		barra.add(menuOpcoes);
 
@@ -114,12 +172,19 @@ public class History extends GetProperties {
 	private JScrollPane criarTable() {
 
 		JTable tabela = new JTable(modelo);
+		Font fonte = new Font("Georgia", Font.CENTER_BASELINE, 16);
+
 		DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer(); // Para receber o alinhamento da JTable
 
-		Font fonte = new Font("Georgia", Font.CENTER_BASELINE, 16);
-		JTableHeader cabecalho = tabela.getTableHeader();
-		cabecalho.setFont(fonte);
-		cabecalho.setBackground(Color.LIGHT_GRAY);
+		/*
+		 * Linhas seguintes responsáveis pelo alinhamento da JTabe Pela adição das
+		 * respectivas colunas na Table
+		 */
+		JTableHeader header = tabela.getTableHeader();
+		DefaultTableCellRenderer centralizado = (DefaultTableCellRenderer) header.getDefaultRenderer();
+		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+		header.setFont(fonte);
+		header.setBackground(Color.GRAY);
 		cellRender.setHorizontalAlignment(SwingConstants.CENTER); // Defino o alinhamento
 
 		modelo.addColumn("Figura"); // Crio uma coluna na JTable
@@ -146,15 +211,20 @@ public class History extends GetProperties {
 		String linha;
 
 		try {
-			arq = new FileReader(GetProperties.getProp().getProperty("saveData"));
+			if (prop.getProperty("CustomSave") == null) {
+				arq = new FileReader(prop.getProperty("saveData"));
+			} else {
+				arq = new FileReader(prop.getProperty("CustomSave"));
+			}
 			leitor = new BufferedReader(arq);
 
 			while ((linha = leitor.readLine()) != null) {
 				String[] array = new String[3];
-				array = linha.split(";");
+				array = linha.split(" / ");
 				lista.add(array);
 
 			}
+			arq.close();
 
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());

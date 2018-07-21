@@ -2,10 +2,11 @@ package dados;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
-import static java.nio.file.StandardCopyOption. *;
+import static java.nio.file.StandardCopyOption.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
@@ -24,7 +25,7 @@ public class SaveData {
 	private String nome;
 	private String area;
 	private String volume = null;
-	private Properties prop;
+	private Properties prop = GetProperties.getProp();
 
 	public SaveData() {
 		super();
@@ -45,8 +46,11 @@ public class SaveData {
 
 		try {
 			FileWriter arq = null;
-			prop = GetProperties.getProp();
-			arq = new FileWriter(prop.getProperty("saveData"));
+			if (prop.getProperty("CustomSave") == null) {
+				arq = new FileWriter(prop.getProperty("saveData"));
+			} else {
+				arq = new FileWriter(prop.getProperty("CustomSave"));
+			}
 			arq.close();
 
 		} catch (FileNotFoundException e) {
@@ -54,7 +58,6 @@ public class SaveData {
 		} catch (IOException e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
-
 	}
 
 	private void SaveDates() {
@@ -63,10 +66,13 @@ public class SaveData {
 			FileWriter arq = null;
 			BufferedWriter escritor = null;
 			prop = GetProperties.getProp();
-
-			arq = new FileWriter(prop.getProperty("saveData"), true);
+			if (prop.getProperty("CustomSave") == null) {
+				arq = new FileWriter(prop.getProperty("saveData"), true);
+			} else {
+				arq = new FileWriter(prop.getProperty("CustomSave"), true);
+			}
 			escritor = new BufferedWriter(arq);
-			escritor.write(nome + ";" + area + ";" + volume);
+			escritor.write(nome + " / " + area + " / " + volume);
 			escritor.newLine();
 
 			escritor.close();
@@ -81,18 +87,30 @@ public class SaveData {
 
 	public void SaveDates(String path) {
 		prop = GetProperties.getProp();
+		Path path2;
 
-		 Path path2 = FileSystems.getDefault().getPath(prop.getProperty("saveData"));
-		 Path pathTarget = FileSystems.getDefault().getPath(path);
-		 
-		try {
-			Files.copy(path2, pathTarget, REPLACE_EXISTING);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Erro: "+e.getMessage());
+		if (prop.getProperty("CustomSave") == null) {
+			path2 = FileSystems.getDefault().getPath(prop.getProperty("saveData"));
+		} else {
+			path2 = FileSystems.getDefault().getPath(prop.getProperty("CustomSave"));
 		}
 
-		prop.replace("saveData", path);
+		Path pathTarget = FileSystems.getDefault().getPath(path);
+		FileOutputStream out;
+		try {
+			Files.copy(path2, pathTarget, REPLACE_EXISTING);
+			FileWriter arq = new FileWriter(prop.getProperty("saveData"));
+			out = new FileOutputStream("./src/properties/listComandos.properties");
+			prop.setProperty("CustomSave", path);
+			prop.store(out, "\n");
+
+			out.close();
+			arq.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erro: " + e.getMessage());
+		}
 	}
 
 }

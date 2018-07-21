@@ -13,12 +13,14 @@ import javax.swing.JTextField;
 import dados.SaveData;
 import geometricShapes.Figuras;
 import interfaceG.InterfaceGrafica;
+
 /**
- * Classe utilizada para realizar os cálculos de volume e área do Cilindro
- * ,e apresentar os seus resultados na interface ,e os salva em um arquivo txt.
+ * Classe utilizada para realizar os cálculos de volume e área do Cilindro ,e
+ * apresentar os seus resultados na interface ,e os salva em um arquivo txt.
+ * 
  * @author R-CALC
- * @since 1.0	
- * @version 1.0 
+ * @since 1.0
+ * @version 1.0
  */
 public class Cilindro extends Figuras {
 	private float raio;
@@ -60,7 +62,6 @@ public class Cilindro extends Figuras {
 		} else {
 			return false;
 		}
-
 	}
 
 	@Override
@@ -78,10 +79,10 @@ public class Cilindro extends Figuras {
 						setVolume(Integer.parseInt(Traio.getText()), Integer.parseInt(Taltura.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
-						rArea.setText("Área:      " + dA+" cm²");
-						rVolume.setText(" Volume: " + dV+" cm³");
-						rArea.setBounds(550, 300,250, 30);
-						rVolume.setBounds(545, 320,250, 30);
+						rArea.setText("Área:      " + dA + " cm²");
+						rVolume.setText(" Volume: " + dV + " cm³");
+						rArea.setBounds(550, 300, 250, 30);
+						rVolume.setBounds(545, 320, 250, 30);
 						rVolume.setFont(fonte);
 						rArea.setFont(fonte);
 						painel2.add(rVolume);
@@ -132,7 +133,7 @@ public class Cilindro extends Figuras {
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
-		
+
 		image = new JLabel();
 		image.setIcon(new ImageIcon(InterfaceGrafica.class.getResource("/figures/Cilindro.jpg")));
 		image.setBounds(500, 0, 356, 280);

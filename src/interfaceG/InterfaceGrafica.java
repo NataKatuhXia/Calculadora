@@ -3,6 +3,10 @@ package interfaceG;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -38,9 +42,14 @@ public class InterfaceGrafica extends JFrame {
 		 * Metodo para Instanciar a JFrame E logo apos chama a Funçao para configurar a
 		 * JFrame
 		 */
-		calcGeometrica = new JFrame("Calculadora Geometrica"); // Inicializando a JFrame
-		calcGeometrica.setBackground(Color.LIGHT_GRAY);
-		calcGeometrica.setDefaultCloseOperation(EXIT_ON_CLOSE); // Encerrar o processo quando fecha a JFrame
+
+		// Inicializando a JFrame
+		calcGeometrica = new JFrame("Calculadora Geometrica");
+
+		// Encerrar o processo quando fecha a JFrame
+		calcGeometrica.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		// Método para preparar a JFrame
 		inicializaComponente();
 
 	}
@@ -50,13 +59,29 @@ public class InterfaceGrafica extends JFrame {
 		 * Este metodo configura a JFrame de forma personalizada
 		 */
 
-		montaJanela();// Metodo para montar a primeira parte do Panel
-		calcGeometrica.setSize(800, 600); // Informando o tamanho da janela
-		calcGeometrica.getContentPane().setLayout(null); // Permitindo que a janela seja livre para ser modificado
+		// Metodo para montar a primeira parte do Panel
+		montaJanela();
 
-		calcGeometrica.setVisible(true); // Permitindo que a Janela fique visível na tela
-		calcGeometrica.setResizable(false); // Nega a maximizacao da Janela
-		calcGeometrica.setLocationRelativeTo(null); // Faz a Janela ser carregada no centro da Tela
+		// Definindo a Cor de fundo da JFrame
+		calcGeometrica.setBackground(Color.LIGHT_GRAY);
+
+		// Informando o tamanho da janela
+		calcGeometrica.setSize(800, 600);
+
+		// Permitindo que a janela seja livre para ser modificado
+		calcGeometrica.getContentPane().setLayout(null);
+
+		// Permitindo que a Janela fique visível na tela
+		calcGeometrica.setVisible(true);
+
+		// Nega a maximizacao da Janela
+		calcGeometrica.setResizable(false);
+
+		// Faz a Janela ser carregada no centro da Tela
+		calcGeometrica.setLocationRelativeTo(null);
+
+		// Defininco o ícone para a JFrame
+		calcGeometrica.setIconImage(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))).getImage());
 
 	}
 
@@ -70,14 +95,23 @@ public class InterfaceGrafica extends JFrame {
 		painel2.setVisible(true);
 		painel2.setBounds(0, 157, 994, 604);
 
-		painel1 = new JPanel(); // Instanciando o Primeiro JPanel
+		// Instanciando o Primeiro JPanel
+		painel1 = new JPanel();
+
+		// Permitindo que o Painel seja livre para ser modificado
 		painel1.setBackground(Color.WHITE);
-		painel1.setLayout(null); // Permitindo que o Painel seja livre para ser modificado
-		painel1.setBounds(0, 0, 994, 157); // Informando a localização e o tamanho que ele sera iniciado na tela
 
-		calcGeometrica.setContentPane(montaPainel1());// Adiciona o JPanel_1 a Janela
+		// Definindo com null um Layout pré definido
+		painel1.setLayout(null);
 
-		calcGeometrica.setJMenuBar(montaMenuBar()); // Adciona o JMenuBar na Janela
+		// Informando a localização e o tamanho que ele sera iniciado na tela
+		painel1.setBounds(0, 0, 994, 157);
+
+		// Adiciona o JPanel_1 a Janela
+		calcGeometrica.setContentPane(montaPainel1());
+
+		// Adciona o JMenuBar na Janela
+		calcGeometrica.setJMenuBar(montaMenuBar());
 
 	}
 
@@ -86,18 +120,36 @@ public class InterfaceGrafica extends JFrame {
 		 * Metodo para montar o JPanel_1 JPanel vai conter o JLabel "Figura" e o
 		 * JComboBox Localizada na parte Superior da JFrame
 		 */
-		painel1.add(montaComboBox()); // Recebe os atributos que vao ser adicionados a ele
 
-		Font fonte = new Font("Arial", Font.CENTER_BASELINE, 20); // Personalizado uma fonte para o JLabel
-		JLabel LFigura = new JLabel("Figura:"); // Adicionando a JLabel para acompanhar o JComboBox
-		LFigura.setFont(fonte); // A JLabel recebendo a fonte
-		LFigura.setBounds(44, 40, 80, 30); // Informando a localizacao e o tamanho da JLabel
-		LFigura.setVisible(true); // Informando que a JLabel ficara visível
-		painel1.add(LFigura); // Adicionando a JLabel ao JPanel
+		// Recebe os atributos que vao ser adicionados a ele
+		painel1.add(montaComboBox());
 
-		fonte = new Font("Arial", Font.CENTER_BASELINE, 14); // Personalizado uma fonte para o JButton
+		// Personalizado uma fonte para o JLabel
+		Font fonte = new Font("Arial", Font.CENTER_BASELINE, 20);
+
+		// Instanciando a JLabel para acompanhar o JComboBox
+		JLabel LFigura = new JLabel("Figura:");
+
+		// A JLabel recebendo a fonte
+		LFigura.setFont(fonte);
+
+		// Informando a localizacao e o tamanho da JLabel
+		LFigura.setBounds(44, 40, 80, 30);
+
+		// Informando que a JLabel ficara visível
+		LFigura.setVisible(true);
+
+		// Adicionando a JLabel ao JPanel
+		painel1.add(LFigura);
+
+		// Alterando a fonte
+		fonte = new Font("Arial", Font.CENTER_BASELINE, 14);
+
+		// Personalizado uma fonte para o JButton
 		JButton bSelecionar = new JButton("Selecionar");// Adicionando o JButton para acompanhar o JComboBox
-		bSelecionar.addActionListener(new ActionListener() { // Criando a ação do JButton
+
+		// Criando a ação do JButton
+		bSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (OpcaoFiguras.getSelectedIndex() > 0) { // Condicional para o usuario escolher uma figura
 					montaPainel2(OpcaoFiguras.getSelectedIndex());
@@ -106,12 +158,21 @@ public class InterfaceGrafica extends JFrame {
 				}
 			}
 		});
-		bSelecionar.setFont(fonte);// O JButton recebendo a fonte
-		bSelecionar.setBounds(634, 42, 120, 30); // Informando a localizacao e o tamanho do JButton
-		bSelecionar.setVisible(true);// Informando que o JButton ficara visível
-		painel1.add(bSelecionar);// Adicionando o JButton ao JPanel
 
-		return painel1; // Retorna o JPanel personalizado
+		// O JButton recebendo a fonte
+		bSelecionar.setFont(fonte);
+
+		// Informando a localizacao e o tamanho do JButton
+		bSelecionar.setBounds(634, 42, 120, 30);
+
+		// Informando que o JButton ficara visível
+		bSelecionar.setVisible(true);
+
+		// Adicionando o JButton ao JPanel
+		painel1.add(bSelecionar);
+
+		// Retorna o JPanel personalizado
+		return painel1;
 	}
 
 	private JComboBox<ImageIcon> montaComboBox() {
@@ -120,12 +181,15 @@ public class InterfaceGrafica extends JFrame {
 		 * adicionado ao JPanel;
 		 */
 
-		OpcaoFiguras = new JComboBox<ImageIcon>(); // Instanciando o JComboBox
+		// Instanciando o JComboBox
+		OpcaoFiguras = new JComboBox<ImageIcon>();
 
+		// Definindo as Cores de fundo e seleção do JComboBox
 		OpcaoFiguras.setForeground(Color.WHITE);
 		OpcaoFiguras.setBackground(Color.WHITE);
 
-		OpcaoFiguras.setBounds(129, 42, 495, 30);// Informando a localizacao e o tamanho do JComboBox
+		// Informando a localizacao e o tamanho do JComboBox
+		OpcaoFiguras.setBounds(129, 42, 495, 30);
 
 		/*
 		 * Nas linhas a seguir estão sendo adicionados itens ao JComboBox O JComboBox é
@@ -141,13 +205,17 @@ public class InterfaceGrafica extends JFrame {
 			OpcaoFiguras.addItem(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty(i.toString()))));
 		}
 
-		return OpcaoFiguras; // Retorna o JComboBox personalizado
+		// Retorna o JComboBox personalizado
+		return OpcaoFiguras;
 	}
 
 	private void montaPainel2(int opcao) {
 
-		painel2.setVisible(false); // Desativo o JPanel para poder substituir os itens sem que o usuário perceba
-		painel2.removeAll(); // Retiro todos os campos adicionados anteriormente
+		// Desativo o JPanel para poder substituir os itens sem que o usuário perceba
+		painel2.setVisible(false);
+
+		// Retiro todos os campos adicionados anteriormente
+		painel2.removeAll();
 
 		/*
 		 * 
@@ -159,25 +227,32 @@ public class InterfaceGrafica extends JFrame {
 		painel2.setVisible(true);
 		painel2.setBackground(Color.WHITE);
 
-		calcGeometrica.getContentPane().add(painel2); // Adiciona o JPanel_2 a Janela
+		// Adiciona o JPanel_2 a Janela
+		calcGeometrica.getContentPane().add(painel2);
 
-		painel2.repaint(); // Atualiza a JFrame para carregar o novo Formulario
+		// Atualiza a JFrame para carregar o novo Formulario
+		painel2.repaint();
 
 	}
 
 	private JMenuBar montaMenuBar() {
 		// Objeto que desenha a barra de Menu
 		JMenuBar barra = new JMenuBar();
+
 		// Cria o menu Arquivo que ficará na barra de Menu
 		JMenuItem menuArquivo = new JMenu("Arquivo");
+
 		// Adiciona um ícone ao MenuArquivo
 		menuArquivo.setIcon(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty("icons.arquivo"))));
+
 		// Cria um submenu Historico
 		JMenuItem itemMenuHistorico = new JMenuItem("Histórico");
+
 		// Adiciona um ícone ao SubMenuHistorico
 		itemMenuHistorico
 				.setIcon(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty("icons.historico"))));
-		// Adiciona a ação do MenuSair
+
+		// Adiciona a ação do MenuHistorico
 		itemMenuHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new History();
@@ -186,26 +261,47 @@ public class InterfaceGrafica extends JFrame {
 
 		// Cria um submenu Sair
 		JMenuItem itemMenuSair = new JMenuItem("Sair");
+
 		// Adiciona um ícone ao SubMenuSair
 		itemMenuSair.setIcon(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty("icons.sair"))));
+
 		// Adiciona a ação do MenuSair
 		itemMenuSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					/*
+					 * Retornar o caminho para Salvar o arquivo ao Destino Padrão
+					 */
+					FileOutputStream out = new FileOutputStream("./src/properties/listComandos.properties");
+					prop.remove("CustomSave");
+					prop.store(out, "");
+
+					// Limpando o histórico, caso o usuário não tenha salvado
+					FileWriter arq = new FileWriter(prop.getProperty("saveData"));
+					arq.close();
+
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});
 
-		calcGeometrica.setIconImage(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))).getImage());
-
 		// Adiciona o Submenu no Menu Arquivo
 		menuArquivo.add(itemMenuHistorico);
+
 		// Adciona um Separador de itens no menu Arquivo
 		((JMenu) menuArquivo).addSeparator();
+
 		// Adiciona o Submenu no Menu Arquivo
 		menuArquivo.add(itemMenuSair);
+
 		// Adiciona o menu Arquivo na barra de Menu
 		barra.add(menuArquivo);
 
+		// Retorna a JMenuBar definida
 		return barra;
 	}
 }
