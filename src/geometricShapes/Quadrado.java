@@ -27,6 +27,7 @@ public class Quadrado extends Figuras {
 	private double lado;
 	private JTextField Tlado;
 
+	@Override
 	public void setArea(double lado) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.lado = lado;
@@ -40,6 +41,7 @@ public class Quadrado extends Figuras {
 		area = Math.pow(lado, 2);
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -62,7 +64,7 @@ public class Quadrado extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Tlado.getText()))) {
 					try {
-						setArea(Integer.parseInt(Tlado.getText()));
+						setArea(Double.parseDouble(Tlado.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -97,6 +99,7 @@ public class Quadrado extends Figuras {
 		painel2.add(Llado);
 
 		Tlado = new JTextField();
+		eventPut(Tlado);
 		Tlado.setFont(fonte);
 		Tlado.setBounds(213, 43, 145, 30);
 		Tlado.setVisible(true);

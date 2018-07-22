@@ -27,13 +27,15 @@ public class Cubo extends Figuras {
 	private double aresta;
 	private JTextField Taresta;
 
-	public void setVolume(int aresta) {
+	@Override
+	public void setVolume(double aresta) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.aresta = aresta;
 		calcVolume();
 
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -43,14 +45,16 @@ public class Cubo extends Figuras {
 
 	}
 
-	public void setArea(int aresta) {
+	@Override
+	public void setArea(double aresta) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.aresta = aresta;
 		calcArea();
 
 	}
 
-	private void calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = Math.pow(aresta, 3);
 	}
@@ -75,8 +79,8 @@ public class Cubo extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Taresta.getText()))) {
 					try {
-						setArea(Integer.parseInt(Taresta.getText()));
-						setVolume(Integer.parseInt(Taresta.getText()));
+						setArea(Double.parseDouble(Taresta.getText()));
+						setVolume(Double.parseDouble(Taresta.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -116,6 +120,7 @@ public class Cubo extends Figuras {
 		painel2.add(Laresta);
 
 		Taresta = new JTextField();
+		eventPut(Taresta);
 		Taresta.setFont(fonte);
 		Taresta.setBounds(213, 43, 145, 30);
 		Taresta.setVisible(true);

@@ -30,6 +30,7 @@ public class PrismaReto extends Figuras {
 	private JTextField Taltura;
 	private JTextField Tpbase;
 
+	@Override
 	public void setVolume(double altura, double areaBase) {
 		// Metodo para o calculo do volume do prisma reto, recebe como parametro altura
 		// e area da base
@@ -39,6 +40,7 @@ public class PrismaReto extends Figuras {
 
 	}
 
+	@Override
 	public void setArea(double altura, double perimetroBase, double areaBase) {
 		// Metodo para o calculo da area do prisma reto, recebe como parametro altura,
 		// perimetro da base e area da base
@@ -55,11 +57,13 @@ public class PrismaReto extends Figuras {
 		area = (altura * perimetroBase) + (2 * areaBase); // Area lateral mais area da base x 2
 	}
 
-	private void calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = areaBase * altura;
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty())) {
 			return true;
@@ -81,9 +85,9 @@ public class PrismaReto extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Taltura.getText()), (Tpbase.getText()), (Tabase.getText()))) {
 					try {
-						setArea(Integer.parseInt(Taltura.getText()), Integer.parseInt(Tpbase.getText()),
-								Integer.parseInt(Tabase.getText()));
-						setVolume(Integer.parseInt(Taltura.getText()), Integer.parseInt(Tabase.getText()));
+						setArea(Double.parseDouble(Taltura.getText()), Double.parseDouble(Tpbase.getText()),
+								Double.parseDouble(Tabase.getText()));
+						setVolume(Double.parseDouble(Taltura.getText()), Double.parseDouble(Tabase.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -135,18 +139,21 @@ public class PrismaReto extends Figuras {
 		painel2.add(LPbase);
 
 		Tabase = new JTextField();
+		eventPut(Tabase);
 		Tabase.setFont(fonte);
 		Tabase.setBounds(213, 43, 145, 30);
 		Tabase.setVisible(true);
 		painel2.add(Tabase);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		Tpbase = new JTextField();
+		eventPut(Tpbase);
 		Tpbase.setFont(fonte);
 		Tpbase.setBounds(213, 173, 145, 30);
 		Tpbase.setVisible(true);

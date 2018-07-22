@@ -31,6 +31,7 @@ public class Trapezio extends Figuras {
 	private JTextField Taltura;
 	private JTextField TbaseMenor;
 
+	@Override
 	public void setArea(double basemaior, double basemenor, double altura) {
 		// Metodo para o calculo da area dp trapezio, recebe como parametro base maior,
 		// base menor e altura
@@ -70,8 +71,8 @@ public class Trapezio extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((TbaseMaior.getText()), (TbaseMenor.getText()), (Taltura.getText()))) {
 					try {
-						setArea(Integer.parseInt(TbaseMaior.getText()), Integer.parseInt(TbaseMenor.getText()),
-								Integer.parseInt(Taltura.getText()));
+						setArea(Double.parseDouble(TbaseMaior.getText()), Double.parseDouble(TbaseMenor.getText()),
+								Double.parseDouble(Taltura.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -117,18 +118,21 @@ public class Trapezio extends Figuras {
 		painel2.add(LbaseMenor);
 
 		TbaseMaior = new JTextField();
+		eventPut(TbaseMaior);
 		TbaseMaior.setFont(fonte);
 		TbaseMaior.setBounds(213, 43, 145, 30);
 		TbaseMaior.setVisible(true);
 		painel2.add(TbaseMaior);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		TbaseMenor = new JTextField();
+		eventPut(TbaseMenor);
 		TbaseMenor.setBounds(213, 173, 145, 30);
 		TbaseMenor.setFont(fonte);
 		TbaseMenor.setVisible(true);

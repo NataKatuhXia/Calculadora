@@ -11,8 +11,10 @@ import interfaceG.InterfaceGrafica;
  */
 public class ProgramaCalc {
 	public static void main(String[] args) {
+
 		// Instanciando a classe responável por adaptar o Programa ao S.O
 		new AdaptorSO();
+
 		// Instanciando a classe Reponsável pela inicialização do Programa
 		new InterfaceGrafica();
 	}

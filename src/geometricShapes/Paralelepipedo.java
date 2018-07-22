@@ -30,6 +30,7 @@ public class Paralelepipedo extends Figuras {
 	private JTextField Taresta2;
 	private JTextField Taresta3;
 
+	@Override
 	public void setVolume(double aresta1, double aresta2, double aresta3) {
 		// Metodo para o calculo do volume do paralelepipedo, recebe como parametro o
 		// comprimento das arestas
@@ -56,7 +57,7 @@ public class Paralelepipedo extends Figuras {
 		area = (2 * aresta1 * aresta2) + (2 * aresta1 * aresta3) + (2 * aresta2 * aresta3);
 	}
 
-	private void calcVolume() {
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = aresta1 * aresta2 * aresta3;
 	}
@@ -84,10 +85,10 @@ public class Paralelepipedo extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Taresta1.getText()), (Taresta2.getText()), (Taresta3.getText()))) {
 					try {
-						setVolume(Integer.parseInt(Taresta1.getText()), Integer.parseInt(Taresta2.getText()),
-								Integer.parseInt(Taresta3.getText()));
-						setArea(Integer.parseInt(Taresta1.getText()), Integer.parseInt(Taresta2.getText()),
-								Integer.parseInt(Taresta3.getText()));
+						setVolume(Double.parseDouble(Taresta1.getText()), Double.parseDouble(Taresta2.getText()),
+								Double.parseDouble(Taresta3.getText()));
+						setArea(Double.parseDouble(Taresta1.getText()), Double.parseDouble(Taresta2.getText()),
+								Double.parseDouble(Taresta3.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -139,18 +140,21 @@ public class Paralelepipedo extends Figuras {
 		painel2.add(Laresta3);
 
 		Taresta1 = new JTextField();
+		eventPut(Taresta1);
 		Taresta1.setFont(fonte);
 		Taresta1.setBounds(213, 43, 145, 30);
 		Taresta1.setVisible(true);
 		painel2.add(Taresta1);
 
 		Taresta2 = new JTextField();
+		eventPut(Taresta2);
 		Taresta2.setFont(fonte);
 		Taresta2.setBounds(213, 108, 145, 30);
 		Taresta2.setVisible(true);
 		painel2.add(Taresta2);
 
 		Taresta3 = new JTextField();
+		eventPut(Taresta3);
 		Taresta3.setFont(fonte);
 		Taresta3.setBounds(213, 173, 145, 30);
 		Taresta3.setVisible(true);

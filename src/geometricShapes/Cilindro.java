@@ -23,12 +23,13 @@ import interfaceG.InterfaceGrafica;
  * @version 1.0
  */
 public class Cilindro extends Figuras {
-	private float raio;
-	private float altura;
+	private double raio;
+	private double altura;
 	private JTextField Traio;
 	private JTextField Taltura;
 
-	public void setVolume(float raio, float altura) {
+	@Override
+	public void setVolume(double raio, double altura) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.raio = raio;
 		this.altura = altura;
@@ -36,7 +37,8 @@ public class Cilindro extends Figuras {
 		calcVolume();
 	}
 
-	public void setArea(float raio, float altura) {
+	@Override
+	public void setArea(double raio, double altura) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.raio = raio;
 		this.altura = altura;
@@ -48,12 +50,13 @@ public class Cilindro extends Figuras {
 	@Override
 	protected void calcArea() {
 		// Calculo da Area
-		area = (float) (2 * 3.14 * raio * (raio + altura));
+		area = (double) (2 * 3.14 * raio * (raio + altura));
 	}
 
-	private void calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
-		volume = (float) (3.14 * altura * Math.pow(raio, 2));
+		volume = (double) (3.14 * altura * Math.pow(raio, 2));
 	}
 
 	protected boolean checkinformation(String opcao, String opcao2) {
@@ -75,8 +78,8 @@ public class Cilindro extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Traio.getText()), (Taltura.getText()))) {
 					try {
-						setArea(Integer.parseInt(Traio.getText()), Integer.parseInt(Taltura.getText()));
-						setVolume(Integer.parseInt(Traio.getText()), Integer.parseInt(Taltura.getText()));
+						setArea(Double.parseDouble(Traio.getText()), Double.parseDouble(Taltura.getText()));
+						setVolume(Double.parseDouble(Traio.getText()), Double.parseDouble(Taltura.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -123,12 +126,14 @@ public class Cilindro extends Figuras {
 		painel2.add(Laltura);
 
 		Traio = new JTextField();
+		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
 		painel2.add(Traio);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

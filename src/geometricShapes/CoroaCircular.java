@@ -29,6 +29,7 @@ public class CoroaCircular extends Figuras {
 	private JTextField TraioMaior;
 	private JTextField TraioMenor;
 
+	@Override
 	public void setArea(double raiomenor, double raiomaior) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.raiomaior = raiomaior;
@@ -38,6 +39,7 @@ public class CoroaCircular extends Figuras {
 
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -52,6 +54,7 @@ public class CoroaCircular extends Figuras {
 		area = 3.14 * (Math.pow(raiomaior, 2) - Math.pow(raiomenor, 2));
 	}
 
+	@Override
 	public JPanel montaRequisitos() {
 		painel2 = new JPanel();
 		painel2.setLayout(null);
@@ -64,7 +67,7 @@ public class CoroaCircular extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((TraioMenor.getText()), (TraioMaior.getText()))) {
 					try {
-						setArea(Integer.parseInt(TraioMenor.getText()), Integer.parseInt(TraioMaior.getText()));
+						setArea(Double.parseDouble(TraioMenor.getText()), Double.parseDouble(TraioMaior.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -104,12 +107,14 @@ public class CoroaCircular extends Figuras {
 		painel2.add(LraioMenor);
 
 		TraioMaior = new JTextField();
+		eventPut(TraioMaior);
 		TraioMaior.setFont(fonte);
 		TraioMaior.setBounds(213, 43, 145, 30);
 		TraioMaior.setVisible(true);
 		painel2.add(TraioMaior);
 
 		TraioMenor = new JTextField();
+		eventPut(TraioMenor);
 		TraioMenor.setFont(fonte);
 		TraioMenor.setBounds(213, 108, 145, 30);
 		TraioMenor.setVisible(true);

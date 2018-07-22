@@ -28,6 +28,7 @@ public class ZonaEsferica extends Figuras {
 	private JTextField Traio;
 	private JTextField Taltura;
 
+	@Override
 	public void setArea(double altura, double raio) {
 		this.altura = altura;
 		this.raio = raio;
@@ -55,7 +56,7 @@ public class ZonaEsferica extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Traio.getText()), (Taltura.getText()))) {
 					try {
-						setArea(Integer.parseInt(Taltura.getText()), Integer.parseInt(Traio.getText()));
+						setArea(Double.parseDouble(Taltura.getText()), Double.parseDouble(Traio.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -93,12 +94,14 @@ public class ZonaEsferica extends Figuras {
 		painel2.add(Laltura);
 
 		Traio = new JTextField();
+		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
 		painel2.add(Traio);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
@@ -113,6 +116,7 @@ public class ZonaEsferica extends Figuras {
 
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;

@@ -9,9 +9,8 @@ import java.nio.file.FileSystems;
 import static java.nio.file.StandardCopyOption.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Properties;
 
-import interfaceG.GetProperties;
+import dados.GetProperties;
 
 /**
  * Classe responsavel por salvar os dados recebidos do programa em um arquivo
@@ -21,16 +20,21 @@ import interfaceG.GetProperties;
  * @since 1.0
  * @version 1.0
  */
-public class SaveData {
+public class SaveData extends GetProperties {
 	private String nome;
 	private String area;
 	private String volume = null;
-	private Properties prop = GetProperties.getProp();
 
+	/**
+	 * Construtor
+	 */
 	public SaveData() {
 		super();
 	}
 
+	/**
+	 * Construtor para receber os parâmetros que serão salvos
+	 */
 	public SaveData(String nome, String area, String volume) {
 		this.nome = nome;
 		this.area = area;
@@ -38,10 +42,16 @@ public class SaveData {
 		SaveDates();
 	}
 
-	public SaveData(String figura, String area) throws IOException {
-		this(figura, area, "-");
+	/**
+	 * Construtor para receber os parâmetros que serão salvos
+	 */
+	public SaveData(String nome, String area) throws IOException {
+		this(nome, area, "-");
 	}
 
+	/*
+	 * Método para limpar a JTable e o arquivo txt
+	 */
 	public void deleteDates() {
 
 		try {
@@ -60,12 +70,13 @@ public class SaveData {
 		}
 	}
 
+	/*
+	 * Salvar dados automaticamente no arquivo Txt
+	 */
 	private void SaveDates() {
-
 		try {
 			FileWriter arq = null;
 			BufferedWriter escritor = null;
-			prop = GetProperties.getProp();
 			if (prop.getProperty("CustomSave") == null) {
 				arq = new FileWriter(prop.getProperty("saveData"), true);
 			} else {
@@ -85,8 +96,12 @@ public class SaveData {
 		}
 	}
 
+	/**
+	 * Método para salvar o arquivo
+	 * 
+	 * @pam path = caminho que o usuário vai escolher para salvar o arquivo
+	 */
 	public void SaveDates(String path) {
-		prop = GetProperties.getProp();
 		Path path2;
 
 		if (prop.getProperty("CustomSave") == null) {

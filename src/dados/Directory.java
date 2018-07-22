@@ -1,17 +1,20 @@
-package interfaceG;
+package dados;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
 import dados.SaveData;
 
-public class Directory {
-	private Properties prop = GetProperties.getProp();
+/**
+ * 
+ * @author R-CALC
+ *
+ */
+public class Directory extends GetProperties {
 
 	public void saveDirectory() {
 		JFileChooser file;
@@ -52,6 +55,10 @@ public class Directory {
 		}
 	}
 
+	/**
+	 * 
+	 * @return JFileChooser
+	 */
 	public int openDirectory() {
 
 		JFileChooser file;
@@ -92,7 +99,7 @@ public class Directory {
 				System.out.println("Erro: " + e.getMessage());
 			}
 		}
-		
+
 		return i;
 
 	}

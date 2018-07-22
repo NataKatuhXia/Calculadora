@@ -27,6 +27,7 @@ public class Esfera extends Figuras {
 	private double raio;
 	private JTextField Traio;
 
+	@Override
 	public void setVolume(double raio) {
 		// Metodo para o calculo do volume da Esfera, recebe como parametro o raio da
 		// esfera
@@ -35,6 +36,7 @@ public class Esfera extends Figuras {
 
 	}
 
+	@Override
 	public void setArea(double raio) {
 		// Metodo para o calculo da area da Esfera, recebe como parametro o raio da
 		// esfera
@@ -49,11 +51,13 @@ public class Esfera extends Figuras {
 		area = 4 * 3.14 * (raio * raio);
 	}
 
-	private void calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = (4 * 3.14 * (raio * raio * raio)) / 3;
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -76,8 +80,8 @@ public class Esfera extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Traio.getText()))) {
 					try {
-						setArea(Integer.parseInt(Traio.getText()));
-						setVolume(Integer.parseInt(Traio.getText()));
+						setArea(Double.parseDouble(Traio.getText()));
+						setVolume(Double.parseDouble(Traio.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -117,6 +121,7 @@ public class Esfera extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
+		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);

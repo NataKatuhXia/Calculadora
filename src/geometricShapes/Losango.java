@@ -28,6 +28,7 @@ public class Losango extends Figuras {
 	private JTextField TdiagonalMaior;
 	private JTextField TdiagonalMenor;
 
+	@Override
 	public void setArea(double diagonalMaior, double diagonalMenor) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.diagonalMaior = diagonalMaior;
@@ -42,6 +43,7 @@ public class Losango extends Figuras {
 		area = (diagonalMaior * diagonalMenor) / 2;
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -64,7 +66,8 @@ public class Losango extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((TdiagonalMaior.getText()), (TdiagonalMenor.getText()))) {
 					try {
-						setArea(Integer.parseInt(TdiagonalMaior.getText()), Integer.parseInt(TdiagonalMenor.getText()));
+						setArea(Double.parseDouble(TdiagonalMaior.getText()),
+								Double.parseDouble(TdiagonalMenor.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -105,12 +108,14 @@ public class Losango extends Figuras {
 		painel2.add(LdiagonalMenor);
 
 		TdiagonalMaior = new JTextField();
+		eventPut(TdiagonalMaior);
 		TdiagonalMaior.setFont(fonte);
 		TdiagonalMaior.setBounds(213, 43, 145, 30);
 		TdiagonalMaior.setVisible(true);
 		painel2.add(TdiagonalMaior);
 
 		TdiagonalMenor = new JTextField();
+		eventPut(TdiagonalMenor);
 		TdiagonalMenor.setFont(fonte);
 		TdiagonalMenor.setBounds(213, 108, 145, 30);
 		TdiagonalMenor.setVisible(true);

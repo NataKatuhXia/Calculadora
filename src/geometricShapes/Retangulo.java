@@ -29,6 +29,7 @@ public class Retangulo extends Figuras {
 	private JTextField Tbase;
 	private JTextField Taltura;
 
+	@Override
 	public void setArea(double base, double altura) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.base = base;
@@ -43,6 +44,7 @@ public class Retangulo extends Figuras {
 		area = (base * altura);
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -65,7 +67,7 @@ public class Retangulo extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Taltura.getText()), (Tbase.getText()))) {
 					try {
-						setArea(Integer.parseInt(Taltura.getText()), Integer.parseInt(Tbase.getText()));
+						setArea(Double.parseDouble(Taltura.getText()), Double.parseDouble(Tbase.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -106,12 +108,14 @@ public class Retangulo extends Figuras {
 		painel2.add(Laltura);
 
 		Tbase = new JTextField();
+		eventPut(Tbase);
 		Tbase.setFont(fonte);
 		Tbase.setBounds(213, 43, 145, 30);
 		Tbase.setVisible(true);
 		painel2.add(Tbase);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

@@ -28,6 +28,7 @@ public class SetorCircular extends Figuras {
 	private JTextField Traio;
 	private JTextField Tangulo;
 
+	@Override
 	public void setArea(double angulocentral, double raio) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.angulocentral = angulocentral;
@@ -43,6 +44,7 @@ public class SetorCircular extends Figuras {
 
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -65,7 +67,7 @@ public class SetorCircular extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Tangulo.getText()), (Traio.getText()))) {
 					try {
-						setArea(Integer.parseInt(Tangulo.getText()), Integer.parseInt(Traio.getText()));
+						setArea(Double.parseDouble(Tangulo.getText()), Double.parseDouble(Traio.getText()));
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
 						rArea.setBounds(550, 300, 250, 30);
@@ -100,6 +102,7 @@ public class SetorCircular extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
+		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
@@ -112,6 +115,7 @@ public class SetorCircular extends Figuras {
 		painel2.add(Langulo);
 
 		Tangulo = new JTextField();
+		eventPut(Tangulo);
 		Tangulo.setFont(fonte);
 		Tangulo.setBounds(213, 108, 145, 30);
 		Tangulo.setVisible(true);

@@ -32,6 +32,7 @@ public class Piramide extends Figuras {
 	private JTextField Taltura;
 	private JTextField TnumeroLados;
 
+	@Override
 	public void setArea(double areaLateral, double areaBase, double numeroLados) {
 		this.areaBase = areaBase;
 		this.numeroLados = numeroLados;
@@ -41,6 +42,7 @@ public class Piramide extends Figuras {
 
 	}
 
+	@Override
 	public void setVolume(double areaBase, double altura) {
 		this.altura = altura;
 		this.areaBase = areaBase;
@@ -60,6 +62,7 @@ public class Piramide extends Figuras {
 		area = (areaBase + (areaLateral * numeroLados));
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3, String opcao4) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty() && (!opcao4.isEmpty()))) {
 			return true;
@@ -69,6 +72,7 @@ public class Piramide extends Figuras {
 
 	}
 
+	@Override
 	public JPanel montaRequisitos() {
 		painel2 = new JPanel();
 		painel2.setLayout(null);
@@ -82,9 +86,9 @@ public class Piramide extends Figuras {
 				if (checkinformation((TareaBase.getText()), (TareaLateral.getText()), (TnumeroLados.getText()),
 						(Taltura.getText()))) {
 					try {
-						setArea(Integer.parseInt(TareaLateral.getText()), Integer.parseInt(TareaBase.getText()),
-								Integer.parseInt(TnumeroLados.getText()));
-						setVolume(Integer.parseInt(TareaBase.getText()), Integer.parseInt(Taltura.getText()));
+						setArea(Double.parseDouble(TareaLateral.getText()), Double.parseDouble(TareaBase.getText()),
+								Double.parseDouble(TnumeroLados.getText()));
+						setVolume(Double.parseDouble(TareaBase.getText()), Double.parseDouble(Taltura.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -142,24 +146,28 @@ public class Piramide extends Figuras {
 		painel2.add(Laltura);
 
 		TareaBase = new JTextField();
+		eventPut(TareaBase);
 		TareaBase.setFont(fonte);
 		TareaBase.setBounds(213, 38, 145, 30);
 		TareaBase.setVisible(true);
 		painel2.add(TareaBase);
 
 		TareaLateral = new JTextField();
+		eventPut(TareaLateral);
 		TareaLateral.setFont(fonte);
 		TareaLateral.setBounds(213, 103, 145, 30);
 		TareaLateral.setVisible(true);
 		painel2.add(TareaLateral);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 233, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		TnumeroLados = new JTextField();
+		eventPut(TnumeroLados);
 		TnumeroLados.setFont(fonte);
 		TnumeroLados.setBounds(213, 168, 145, 30);
 		TnumeroLados.setVisible(true);

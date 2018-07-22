@@ -29,6 +29,7 @@ public class CunhaEsferica extends Figuras {
 	private JTextField Traio;
 	private JTextField Tangulo;
 
+	@Override
 	public void setVolume(double raio, double angulo) {
 		// Metodo para o calculo do volume da Cunha esferica, recebe como parametro raio
 		// da esfera e o angulo da Cunha
@@ -38,6 +39,7 @@ public class CunhaEsferica extends Figuras {
 
 	}
 
+	@Override
 	public void setArea(double raio, double angulo) {
 		// Metodo para o calculo do volume da Cunha esferica, recebe como parametro raio
 		// da esfera e o angulo da Cunha
@@ -52,11 +54,13 @@ public class CunhaEsferica extends Figuras {
 		area = ((3.14 * Math.pow(raio, 2)) * angulo) / 90;
 	}
 
-	private void calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = ((angulo / 360) * ((4 * Math.PI)) * Math.pow(raio, 3));
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -79,8 +83,8 @@ public class CunhaEsferica extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Traio.getText()), (Tangulo.getText()))) {
 					try {
-						setArea(Integer.parseInt(Traio.getText()), Integer.parseInt(Tangulo.getText()));
-						setVolume(Integer.parseInt(Traio.getText()), Integer.parseInt(Tangulo.getText()));
+						setArea(Double.parseDouble(Traio.getText()), Double.parseDouble(Tangulo.getText()));
+						setVolume(Double.parseDouble(Traio.getText()), Double.parseDouble(Tangulo.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -117,6 +121,7 @@ public class CunhaEsferica extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
+		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
@@ -129,6 +134,7 @@ public class CunhaEsferica extends Figuras {
 		painel2.add(Langulo);
 
 		Tangulo = new JTextField();
+		eventPut(Tangulo);
 		Tangulo.setFont(fonte);
 		Tangulo.setBounds(213, 108, 145, 30);
 		Tangulo.setVisible(true);

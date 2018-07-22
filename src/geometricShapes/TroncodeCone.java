@@ -32,6 +32,7 @@ public class TroncodeCone extends Figuras {
 	private JTextField Tgeratriz;
 	private JTextField Taltura;
 
+	@Override
 	public void setArea(double raioMaior, double raioMenor, double geratriz) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.raioMaior = raioMaior;
@@ -42,6 +43,7 @@ public class TroncodeCone extends Figuras {
 
 	}
 
+	@Override
 	public void setVolume(double raioMaior, double raioMenor, double altura) {
 		// Metodo para receber os valores necessarios para realizar os calculos
 		this.raioMaior = raioMaior;
@@ -50,7 +52,8 @@ public class TroncodeCone extends Figuras {
 		this.calcVolume();
 	}
 
-	private void calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = 3.14 * (altura / 3) * (Math.pow(raioMaior, 2) + raioMaior * raioMenor + Math.pow(raioMenor, 2));
 	}
@@ -84,10 +87,10 @@ public class TroncodeCone extends Figuras {
 				if (checkinformation((TraioMaior.getText()), (TraioMenor.getText()), (Tgeratriz.getText()),
 						(Taltura.getText()))) {
 					try {
-						setArea(Integer.parseInt(TraioMaior.getText()), Integer.parseInt(TraioMenor.getText()),
-								Integer.parseInt(Tgeratriz.getText()));
-						setVolume(Integer.parseInt(TraioMaior.getText()), Integer.parseInt(TraioMenor.getText()),
-								Integer.parseInt(Taltura.getText()));
+						setArea(Double.parseDouble(TraioMaior.getText()), Double.parseDouble(TraioMenor.getText()),
+								Double.parseDouble(Tgeratriz.getText()));
+						setVolume(Double.parseDouble(TraioMaior.getText()), Double.parseDouble(TraioMenor.getText()),
+								Double.parseDouble(Taltura.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -144,24 +147,28 @@ public class TroncodeCone extends Figuras {
 		painel2.add(Laltura);
 
 		TraioMaior = new JTextField();
+		eventPut(TraioMaior);
 		TraioMaior.setFont(fonte);
 		TraioMaior.setBounds(213, 38, 145, 30);
 		TraioMaior.setVisible(true);
 		painel2.add(TraioMaior);
 
 		TraioMenor = new JTextField();
+		eventPut(TraioMenor);
 		TraioMenor.setFont(fonte);
 		TraioMenor.setBounds(213, 103, 145, 30);
 		TraioMenor.setVisible(true);
 		painel2.add(TraioMenor);
 
 		Taltura = new JTextField();
+		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 233, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		Tgeratriz = new JTextField();
+		eventPut(Tgeratriz);
 		Tgeratriz.setFont(fonte);
 		Tgeratriz.setBounds(213, 168, 145, 30);
 		Tgeratriz.setVisible(true);

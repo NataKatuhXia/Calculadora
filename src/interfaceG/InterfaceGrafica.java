@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +18,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import dados.GetProperties;
+
 import java.awt.Color;
 
 /**
@@ -28,36 +30,34 @@ import java.awt.Color;
  * @since 1.0
  * @version 1.0
  */
-public class InterfaceGrafica extends JFrame {
-	private static final long serialVersionUID = 1L;
+public class InterfaceGrafica extends GetProperties {
 
 	private JPanel painel1;
 	private JFrame calcGeometrica;
 	private JComboBox<ImageIcon> OpcaoFiguras;
 	private JPanel painel2;
-	private Properties prop = GetProperties.getProp();
 
+	/**
+	 * Metodo para Instanciar a JFrame E logo apos chama a Funçao para configurar a
+	 * JFrame
+	 */
 	public InterfaceGrafica() {
-		/*
-		 * Metodo para Instanciar a JFrame E logo apos chama a Funçao para configurar a
-		 * JFrame
-		 */
 
 		// Inicializando a JFrame
 		calcGeometrica = new JFrame("Calculadora Geometrica");
 
 		// Encerrar o processo quando fecha a JFrame
-		calcGeometrica.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		calcGeometrica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Método para preparar a JFrame
 		inicializaComponente();
 
 	}
 
+	/**
+	 * Este metodo configura a JFrame de forma personalizada
+	 */
 	private void inicializaComponente() {
-		/*
-		 * Este metodo configura a JFrame de forma personalizada
-		 */
 
 		// Metodo para montar a primeira parte do Panel
 		montaJanela();
@@ -85,11 +85,11 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
+	/**
+	 * Metodo para montar a JFrame A JFrame vai conter 3 Jpanel
+	 */
 	private void montaJanela() {
 
-		/*
-		 * Metodo para montar a JFrame A JFrame vai conter 3 Jpanel
-		 */
 		painel2 = new JPanel();
 		painel2.setLayout(null);
 		painel2.setVisible(true);
@@ -115,11 +115,12 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
+	/**
+	 * Metodo para montar o JPanel1
+	 * 
+	 * @return JPanel
+	 */
 	private JPanel montaPainel1() {
-		/*
-		 * Metodo para montar o JPanel_1 JPanel vai conter o JLabel "Figura" e o
-		 * JComboBox Localizada na parte Superior da JFrame
-		 */
 
 		// Recebe os atributos que vao ser adicionados a ele
 		painel1.add(montaComboBox());
@@ -150,7 +151,10 @@ public class InterfaceGrafica extends JFrame {
 
 		// Criando a ação do JButton
 		bSelecionar.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Verificar qual a Figura foi selecionada e montar os Requisitos
 				if (OpcaoFiguras.getSelectedIndex() > 0) { // Condicional para o usuario escolher uma figura
 					montaPainel2(OpcaoFiguras.getSelectedIndex());
 				} else {
@@ -175,11 +179,13 @@ public class InterfaceGrafica extends JFrame {
 		return painel1;
 	}
 
+	/**
+	 * Metodo para montar o ComboBox] Metodo vai retornar o ComboBox pronto para ser
+	 * adicionado ao JPanel;
+	 * 
+	 * @return JComboBox
+	 */
 	private JComboBox<ImageIcon> montaComboBox() {
-		/*
-		 * Metodo para montar o ComboBox] Metodo vai retornar o ComboBox pronto para ser
-		 * adicionado ao JPanel;
-		 */
 
 		// Instanciando o JComboBox
 		OpcaoFiguras = new JComboBox<ImageIcon>();
@@ -209,6 +215,11 @@ public class InterfaceGrafica extends JFrame {
 		return OpcaoFiguras;
 	}
 
+	/**
+	 * Metodo para montar o JPanel2
+	 * 
+	 * @param opcao
+	 */
 	private void montaPainel2(int opcao) {
 
 		// Desativo o JPanel para poder substituir os itens sem que o usuário perceba
@@ -224,7 +235,11 @@ public class InterfaceGrafica extends JFrame {
 		 *
 		 */
 		painel2 = new Formulario().montaPainel(opcao);
+
+		// Permitindo que o JPanel volte a aparecer na Frame
 		painel2.setVisible(true);
+
+		// Alterando a cor de Fundo da JPanel, caso tenha desconfigurado
 		painel2.setBackground(Color.WHITE);
 
 		// Adiciona o JPanel_2 a Janela
@@ -235,6 +250,10 @@ public class InterfaceGrafica extends JFrame {
 
 	}
 
+	/**
+	 * 
+	 * @return JMenuBar
+	 */
 	private JMenuBar montaMenuBar() {
 		// Objeto que desenha a barra de Menu
 		JMenuBar barra = new JMenuBar();
@@ -254,7 +273,10 @@ public class InterfaceGrafica extends JFrame {
 
 		// Adiciona a ação do MenuHistorico
 		itemMenuHistorico.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Abrir a Janela de Histórico
 				new History();
 			}
 		});
@@ -267,7 +289,10 @@ public class InterfaceGrafica extends JFrame {
 
 		// Adiciona a ação do MenuSair
 		itemMenuSair.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Métdo para definir as ações que ocorrerá quando o Usuário sair do Progrma
 				try {
 					/*
 					 * Retornar o caminho para Salvar o arquivo ao Destino Padrão

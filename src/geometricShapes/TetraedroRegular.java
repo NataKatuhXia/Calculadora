@@ -27,6 +27,7 @@ public class TetraedroRegular extends Figuras {
 	private double tamLado;
 	private JTextField Tlado;
 
+	@Override
 	public void setVolume(double tamLado) {
 		/*
 		 * Metodo para o calculo do volume do tetaedro regular, recebe como parametro o
@@ -34,10 +35,11 @@ public class TetraedroRegular extends Figuras {
 		 **/
 		this.tamLado = tamLado;
 
-		this.calcVolume();
+		calcVolume();
 
 	}
 
+	@Override
 	public void setArea(double tamLado) {
 		// Metodo para o calculo da area do octaedro regular, recebe como parametro o
 		// comprimento das arestas
@@ -47,10 +49,10 @@ public class TetraedroRegular extends Figuras {
 
 	}
 
-	private double calcVolume() {
+	@Override
+	protected void calcVolume() {
 		// Calculo do Volume
 		volume = ((tamLado * tamLado * tamLado) * Math.sqrt(2)) / 12;
-		return volume;
 	}
 
 	@Override
@@ -59,6 +61,7 @@ public class TetraedroRegular extends Figuras {
 		area = tamLado * tamLado * Math.sqrt(3);
 	}
 
+	@Override
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -81,8 +84,8 @@ public class TetraedroRegular extends Figuras {
 			public void actionPerformed(ActionEvent e) {
 				if (checkinformation((Tlado.getText()))) {
 					try {
-						setArea(Integer.parseInt(Tlado.getText()));
-						setVolume(Integer.parseInt(Tlado.getText()));
+						setArea(Double.parseDouble(Tlado.getText()));
+						setVolume(Double.parseDouble(Tlado.getText()));
 						dV = df.format(getVolume());
 						dA = df.format(getArea());
 						rArea.setText("Área:      " + dA + " cm²");
@@ -122,6 +125,7 @@ public class TetraedroRegular extends Figuras {
 		painel2.add(Llado);
 
 		Tlado = new JTextField();
+		eventPut(Tlado);
 		Tlado.setFont(fonte);
 		Tlado.setBounds(213, 43, 145, 30);
 		Tlado.setVisible(true);

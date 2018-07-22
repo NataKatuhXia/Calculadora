@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,13 +25,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dados.Directory;
 import dados.SaveData;
 
-public class History extends GetProperties {
+public class History extends InterfaceGrafica {
 
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private ArrayList<String[]> lista = new ArrayList<>();
-	private Properties prop = getProp();
 	private JFrame frameHist = new JFrame("Histórico");
 
 	public History() {
@@ -53,14 +52,20 @@ public class History extends GetProperties {
 		btSair.setVisible(true);
 		btSair.setBounds(285, 300, 90, 23);
 		btSair.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Ocultar a JFrame do Histórico
 				frameHist.dispose();
 			}
 		});
 
 		JButton btLimpar = new JButton("Limpar Histórico");
 		btLimpar.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Limpar os dados do Histórico
 				new SaveData().deleteDates();
 				lista.clear();
 				frameHist.dispose();
@@ -88,7 +93,7 @@ public class History extends GetProperties {
 		JMenuBar barra = new JMenuBar();
 
 		// Cria o menu Arquivo que ficará na barra de Menu
-		JMenuItem menuOpcoes = new JMenu("Opções");
+		JMenuItem menuArquivo = new JMenu("Arquivo");
 
 		// Cria um submenu Salvar Como
 		JMenuItem itemMenuSavarAs = new JMenuItem("Salvar como...");
@@ -143,27 +148,27 @@ public class History extends GetProperties {
 		});
 
 		// Defino os ícones de todos os elementos do JMenuBar
-		menuOpcoes.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.options"))));
+		menuArquivo.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.arquivo"))));
 		itemMenuSavarAs.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.saveAs"))));
 		itemMenuSavar.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.save"))));
 		itemMenuOpen.setIcon(new ImageIcon(History.class.getResource(prop.getProperty("icons.open"))));
 
 		// Adiciona o Submenu "Abrir" no Menu Arquivo
-		menuOpcoes.add(itemMenuOpen);
+		menuArquivo.add(itemMenuOpen);
 
 		// Adiciono um Separador entre os JMenusItens
-		((JMenu) menuOpcoes).addSeparator();
+		((JMenu) menuArquivo).addSeparator();
 
 		// Adiciona o Submenu "Salvar" no Menu Arquivo
-		menuOpcoes.add(itemMenuSavar);
+		menuArquivo.add(itemMenuSavar);
 
 		// Adiciono um Separador entre os JMenusItens
-		((JMenu) menuOpcoes).addSeparator();
+		((JMenu) menuArquivo).addSeparator();
 
 		// Adciono o Submenu "Salvar Como" no Menu Arquivo
-		menuOpcoes.add(itemMenuSavarAs);
+		menuArquivo.add(itemMenuSavarAs);
 		// Adiciona o menu Arquivo na barra de Menu
-		barra.add(menuOpcoes);
+		barra.add(menuArquivo);
 
 		return barra;
 

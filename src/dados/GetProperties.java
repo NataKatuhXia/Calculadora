@@ -1,4 +1,4 @@
-package interfaceG;
+package dados;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,8 +13,9 @@ import java.util.Properties;
  * @version 1.0
  */
 public class GetProperties {
+	public static final Properties prop = getProp();
 
-	public static Properties getProp() {
+	private static Properties getProp() {
 		Properties props = new Properties();
 		try {
 
