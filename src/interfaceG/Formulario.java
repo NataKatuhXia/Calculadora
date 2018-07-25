@@ -36,6 +36,11 @@ import geometricShapes.ZonaEsferica;
 public class Formulario {
 	public JPanel painel2;
 
+	/**
+	 * 
+	 * @param opcao
+	 * @return JPanel
+	 */
 	public JPanel montaPainel(int opcao) {
 		painel2 = new JPanel();
 		painel2.setLayout(null);

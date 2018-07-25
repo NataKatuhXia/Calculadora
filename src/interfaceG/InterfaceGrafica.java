@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import dados.GetProperties;
 
 import java.awt.Color;
+import javax.swing.JDesktopPane;
 
 /**
  * Classe responsavel por toda interface grafica do programa.
@@ -70,6 +71,10 @@ public class InterfaceGrafica extends GetProperties {
 
 		// Permitindo que a janela seja livre para ser modificado
 		calcGeometrica.getContentPane().setLayout(null);
+
+		JDesktopPane TelaSobre = new JDesktopPane();
+		TelaSobre.setBounds(10, 542, 774, -530);
+		painel1.add(TelaSobre);
 
 		// Permitindo que a Janela fique visível na tela
 		calcGeometrica.setVisible(true);
@@ -259,10 +264,35 @@ public class InterfaceGrafica extends GetProperties {
 		JMenuBar barra = new JMenuBar();
 
 		// Cria o menu Arquivo que ficará na barra de Menu
-		JMenuItem menuArquivo = new JMenu("Arquivo");
+		JMenu menuArquivo = new JMenu("Arquivo");
+
+		// Cria o menu Arquivo que ficará na barra de Menu
+		JMenu menuSobre = new JMenu("Sobre");
 
 		// Adiciona um ícone ao MenuArquivo
 		menuArquivo.setIcon(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty("icons.arquivo"))));
+
+		// Adiciona um ícone ao MenuSobre
+		menuSobre.setIcon(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty("icons.about"))));
+
+		// Cria um submenu Sobre
+		JMenuItem itemMenuSobre = new JMenuItem("Sobre a R-Calc");
+
+		// Adiciona um ícone ao SubMenuSobre
+		itemMenuSobre.setIcon(new ImageIcon(InterfaceGrafica.class.getResource(prop.getProperty("icons.inform"))));
+
+		itemMenuSobre.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Abrir a Janela de Histórico
+				AboutFrame telaAbout = new AboutFrame();
+				telaAbout.moveToFront();
+				painel1.add(telaAbout);
+				telaAbout.setVisible(true);
+
+			}
+		});
 
 		// Cria um submenu Historico
 		JMenuItem itemMenuHistorico = new JMenuItem("Histórico");
@@ -323,8 +353,14 @@ public class InterfaceGrafica extends GetProperties {
 		// Adiciona o Submenu no Menu Arquivo
 		menuArquivo.add(itemMenuSair);
 
+		// Adiciona o Submenu no Menu Sobre
+		menuSobre.add(itemMenuSobre);
+
 		// Adiciona o menu Arquivo na barra de Menu
 		barra.add(menuArquivo);
+
+		// Adiciona o menu Sobre na barra de Menu
+		barra.add(menuSobre);
 
 		// Retorna a JMenuBar definida
 		return barra;

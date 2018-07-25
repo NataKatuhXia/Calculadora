@@ -27,22 +27,33 @@ public class Circulo extends Figuras {
 	private double raio;
 	private JTextField Traio;
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 */
 	public void setArea(double raio) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raio = raio;
+		this.raio = Math.abs(raio);
 		calcArea();
 
 	}
 
+	/**
+	 * Metodo responsavel por retornar o valor do comprimento
+	 * 
+	 * @return comprimento
+	 */
 	public double getComprimento() {
-		// Metodo para retornar o valor do comprimento calculada
 		return comprimento;
 	}
 
+	/**
+	 * Metodo para receber os valores necessarios para realizar o calculo de
+	 * comprimento
+	 * 
+	 * @param raio
+	 */
 	public void setComprimento(double raio) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raio = raio;
+		this.raio = Math.abs(raio);
 
 		calcComp();
 
@@ -50,16 +61,19 @@ public class Circulo extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = 3.14 * Math.pow(raio, 2);
 	}
 
 	private void calcComp() {
-		// Calculo do Comprimento
 		this.comprimento = 2 * 3.14 * raio;
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -123,7 +137,6 @@ public class Circulo extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);

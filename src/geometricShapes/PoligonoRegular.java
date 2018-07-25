@@ -28,17 +28,25 @@ public class PoligonoRegular extends Figuras {
 	private JTextField Tapotema;
 	private JTextField Tperimetro;
 
-	@Override
+	/**
+	 * 
+	 * @param perimetro
+	 * @param apotema
+	 */
 	public void setArea(double perimetro, double apotema) {
-		// Metodo para o calculo da area do Poligono Regular, recebe como parametro
-		// perimetro e a apotema
-		this.perimetro = perimetro;
-		this.apotema = apotema;
+		this.perimetro = Math.abs(perimetro);
+		this.apotema = Math.abs(apotema);
 		calcArea();
 
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -50,7 +58,6 @@ public class PoligonoRegular extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = (perimetro * apotema) / 2;
 	}
 
@@ -108,14 +115,12 @@ public class PoligonoRegular extends Figuras {
 		painel2.add(Lapotema);
 
 		Tperimetro = new JTextField();
-		eventPut(Tperimetro);
 		Tperimetro.setFont(fonte);
 		Tperimetro.setBounds(213, 43, 145, 30);
 		Tperimetro.setVisible(true);
 		painel2.add(Tperimetro);
 
 		Tapotema = new JTextField();
-		eventPut(Tapotema);
 		Tapotema.setFont(fonte);
 		Tapotema.setBounds(213, 108, 145, 30);
 		Tapotema.setVisible(true);

@@ -30,20 +30,27 @@ public class Paralelepipedo extends Figuras {
 	private JTextField Taresta2;
 	private JTextField Taresta3;
 
-	@Override
+	/**
+	 * 
+	 * @param aresta1
+	 * @param aresta2
+	 * @param aresta3
+	 */
 	public void setVolume(double aresta1, double aresta2, double aresta3) {
-		// Metodo para o calculo do volume do paralelepipedo, recebe como parametro o
-		// comprimento das arestas
-		this.aresta1 = aresta1;
-		this.aresta2 = aresta2;
-		this.aresta3 = aresta3;
+		this.aresta1 = Math.abs(aresta1);
+		this.aresta2 = Math.abs(aresta2);
+		this.aresta3 = Math.abs(aresta3);
 		calcVolume();
 
 	}
 
+	/**
+	 * 
+	 * @param aresta1
+	 * @param aresta2
+	 * @param aresta3
+	 */
 	public void setArea(double aresta1, double aresta2, double aresta3) {
-		// Metodo para o calculo da area do paralelepipedo, recebe como parametro o
-		// comprimento das arestas
 		this.aresta1 = aresta1;
 		this.aresta2 = aresta2;
 		this.aresta3 = aresta3;
@@ -53,15 +60,23 @@ public class Paralelepipedo extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
+
 		area = (2 * aresta1 * aresta2) + (2 * aresta1 * aresta3) + (2 * aresta2 * aresta3);
 	}
 
+	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = aresta1 * aresta2 * aresta3;
 	}
 
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @param opcao3
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty())) {
 			return true;
@@ -140,21 +155,18 @@ public class Paralelepipedo extends Figuras {
 		painel2.add(Laresta3);
 
 		Taresta1 = new JTextField();
-		eventPut(Taresta1);
 		Taresta1.setFont(fonte);
 		Taresta1.setBounds(213, 43, 145, 30);
 		Taresta1.setVisible(true);
 		painel2.add(Taresta1);
 
 		Taresta2 = new JTextField();
-		eventPut(Taresta2);
 		Taresta2.setFont(fonte);
 		Taresta2.setBounds(213, 108, 145, 30);
 		Taresta2.setVisible(true);
 		painel2.add(Taresta2);
 
 		Taresta3 = new JTextField();
-		eventPut(Taresta3);
 		Taresta3.setFont(fonte);
 		Taresta3.setBounds(213, 173, 145, 30);
 		Taresta3.setVisible(true);

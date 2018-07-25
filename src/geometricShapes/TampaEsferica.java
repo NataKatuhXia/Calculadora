@@ -28,37 +28,46 @@ public class TampaEsferica extends Figuras {
 	private JTextField Traio;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param altura
+	 */
 	public void setArea(double raio, double altura) {
-		// Metodo para o calculo da area da tampa esferica, recebe como parametro raio
-		// da esfera e altura da tampa
-		this.raio = raio;
-		this.altura = altura;
+		this.raio = Math.abs(raio);
+		this.altura = Math.abs(altura);
 		calcArea();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param altura
+	 */
 	public void setVolume(double raio, double altura) {
-		// Metodo para o calculo do volume da tampa esferica, recebe como parametro raio
-		// da esfera e altura da tampa
-		this.raio = raio;
-		this.altura = altura;
+		this.raio = Math.abs(raio);
+		this.altura = Math.abs(altura);
 		calcVolume();
 	}
 
+	@Override
 	protected void calcVolume() {
-		// Calculo Volume
 		volume = 0.33 * 3.14 * Math.pow(altura, 2) * ((3 * raio) - altura);
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo Area
 		area = 2 * 3.14 * raio * altura;
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -129,14 +138,12 @@ public class TampaEsferica extends Figuras {
 		painel2.add(Laltura);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
 		painel2.add(Traio);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

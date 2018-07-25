@@ -27,15 +27,22 @@ public class Cubo extends Figuras {
 	private double aresta;
 	private JTextField Taresta;
 
-	@Override
+	/**
+	 * 
+	 * @param aresta
+	 */
 	public void setVolume(double aresta) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.aresta = aresta;
+		this.aresta = Math.abs(aresta);
 		calcVolume();
 
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -45,9 +52,11 @@ public class Cubo extends Figuras {
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param aresta
+	 */
 	public void setArea(double aresta) {
-		// Metodo para receber os valores necessarios para realizar os calculos
 		this.aresta = aresta;
 		calcArea();
 
@@ -55,13 +64,11 @@ public class Cubo extends Figuras {
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = Math.pow(aresta, 3);
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = (6 * Math.pow(aresta, 2));
 
 	}
@@ -120,7 +127,6 @@ public class Cubo extends Figuras {
 		painel2.add(Laresta);
 
 		Taresta = new JTextField();
-		eventPut(Taresta);
 		Taresta.setFont(fonte);
 		Taresta.setBounds(213, 43, 145, 30);
 		Taresta.setVisible(true);

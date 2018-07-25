@@ -27,23 +27,24 @@ public class TetraedroRegular extends Figuras {
 	private double tamLado;
 	private JTextField Tlado;
 
-	@Override
+	/**
+	 * 
+	 * @param tamLado
+	 */
 	public void setVolume(double tamLado) {
-		/*
-		 * Metodo para o calculo do volume do tetaedro regular, recebe como parametro o
-		 * comprimento das arestas
-		 **/
+
 		this.tamLado = tamLado;
 
-		calcVolume();
+		this.calcVolume();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param tamLado
+	 */
 	public void setArea(double tamLado) {
-		// Metodo para o calculo da area do octaedro regular, recebe como parametro o
-		// comprimento das arestas
-		this.tamLado = tamLado;
+		this.tamLado = Math.abs(tamLado);
 
 		this.calcArea();
 
@@ -51,17 +52,20 @@ public class TetraedroRegular extends Figuras {
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
-		volume = ((tamLado * tamLado * tamLado) * Math.sqrt(2)) / 12;
+		volume = ((Math.pow(tamLado, 3)) * Math.sqrt(2)) / 12;
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
-		area = tamLado * tamLado * Math.sqrt(3);
+		area = Math.pow(tamLado, 2) * Math.sqrt(3);
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -118,14 +122,13 @@ public class TetraedroRegular extends Figuras {
 		bCalcular.setVisible(true);// Informando que o JButton ficara visível
 		painel2.add(bCalcular);
 
-		JLabel Llado = new JLabel("Lado:");
+		JLabel Llado = new JLabel("T. Lado:");
 		Llado.setFont(fonte);
 		Llado.setBounds(114, 45, 104, 24);
 		Llado.setVisible(true);
 		painel2.add(Llado);
 
 		Tlado = new JTextField();
-		eventPut(Tlado);
 		Tlado.setFont(fonte);
 		Tlado.setBounds(213, 43, 145, 30);
 		Tlado.setVisible(true);

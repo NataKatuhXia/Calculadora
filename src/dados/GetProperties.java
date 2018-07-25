@@ -15,10 +15,9 @@ import java.util.Properties;
 public class GetProperties {
 	public static final Properties prop = getProp();
 
-	private static Properties getProp() {
+	public static Properties getProp() {
 		Properties props = new Properties();
 		try {
-
 			FileInputStream file = new FileInputStream("./src/properties/listComandos.properties");
 			props.load(file);
 		} catch (IOException e) {

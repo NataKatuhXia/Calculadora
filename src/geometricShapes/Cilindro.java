@@ -28,20 +28,25 @@ public class Cilindro extends Figuras {
 	private JTextField Traio;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param altura
+	 */
 	public void setVolume(double raio, double altura) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raio = raio;
-		this.altura = altura;
-		// Calculo do Volume
+		this.raio = Math.abs(raio);
+		this.altura = Math.abs(altura);
 		calcVolume();
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param altura
+	 */
 	public void setArea(double raio, double altura) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raio = raio;
-		this.altura = altura;
+		this.raio = Math.abs(raio);
+		this.altura = Math.abs(altura);
 
 		calcArea();
 
@@ -49,16 +54,21 @@ public class Cilindro extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = (double) (2 * 3.14 * raio * (raio + altura));
 	}
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = (double) (3.14 * altura * Math.pow(raio, 2));
 	}
 
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -126,14 +136,12 @@ public class Cilindro extends Figuras {
 		painel2.add(Laltura);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
 		painel2.add(Traio);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

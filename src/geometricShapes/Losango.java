@@ -28,22 +28,30 @@ public class Losango extends Figuras {
 	private JTextField TdiagonalMaior;
 	private JTextField TdiagonalMenor;
 
-	@Override
+	/**
+	 * 
+	 * @param diagonalMaior
+	 * @param diagonalMenor
+	 */
 	public void setArea(double diagonalMaior, double diagonalMenor) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.diagonalMaior = diagonalMaior;
-		this.diagonalMenor = diagonalMenor;
+		this.diagonalMaior = Math.abs(diagonalMaior);
+		this.diagonalMenor = Math.abs(diagonalMenor);
 		calcArea();
 
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da area
 		area = (diagonalMaior * diagonalMenor) / 2;
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -108,14 +116,12 @@ public class Losango extends Figuras {
 		painel2.add(LdiagonalMenor);
 
 		TdiagonalMaior = new JTextField();
-		eventPut(TdiagonalMaior);
 		TdiagonalMaior.setFont(fonte);
 		TdiagonalMaior.setBounds(213, 43, 145, 30);
 		TdiagonalMaior.setVisible(true);
 		painel2.add(TdiagonalMaior);
 
 		TdiagonalMenor = new JTextField();
-		eventPut(TdiagonalMenor);
 		TdiagonalMenor.setFont(fonte);
 		TdiagonalMenor.setBounds(213, 108, 145, 30);
 		TdiagonalMenor.setVisible(true);

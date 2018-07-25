@@ -17,5 +17,6 @@ public class ProgramaCalc {
 
 		// Instanciando a classe Reponsável pela inicialização do Programa
 		new InterfaceGrafica();
+
 	}
 }

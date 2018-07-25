@@ -32,19 +32,28 @@ public class Piramide extends Figuras {
 	private JTextField Taltura;
 	private JTextField TnumeroLados;
 
-	@Override
+	/**
+	 * 
+	 * @param areaLateral
+	 * @param areaBase
+	 * @param numeroLados
+	 */
 	public void setArea(double areaLateral, double areaBase, double numeroLados) {
-		this.areaBase = areaBase;
-		this.numeroLados = numeroLados;
-		this.areaLateral = areaLateral;
+		this.areaBase = Math.abs(areaBase);
+		this.numeroLados = Math.abs(numeroLados);
+		this.areaLateral = Math.abs(areaLateral);
 
 		this.calcArea();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param areaBase
+	 * @param altura
+	 */
 	public void setVolume(double areaBase, double altura) {
-		this.altura = altura;
+		this.altura = Math.abs(altura);
 		this.areaBase = areaBase;
 
 		this.calcVolume();
@@ -52,17 +61,23 @@ public class Piramide extends Figuras {
 	}
 
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = (areaBase * altura) / 3;
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = (areaBase + (areaLateral * numeroLados));
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @param opcao3
+	 * @param opcao4
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3, String opcao4) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty() && (!opcao4.isEmpty()))) {
 			return true;
@@ -72,7 +87,6 @@ public class Piramide extends Figuras {
 
 	}
 
-	@Override
 	public JPanel montaRequisitos() {
 		painel2 = new JPanel();
 		painel2.setLayout(null);
@@ -146,28 +160,24 @@ public class Piramide extends Figuras {
 		painel2.add(Laltura);
 
 		TareaBase = new JTextField();
-		eventPut(TareaBase);
 		TareaBase.setFont(fonte);
 		TareaBase.setBounds(213, 38, 145, 30);
 		TareaBase.setVisible(true);
 		painel2.add(TareaBase);
 
 		TareaLateral = new JTextField();
-		eventPut(TareaLateral);
 		TareaLateral.setFont(fonte);
 		TareaLateral.setBounds(213, 103, 145, 30);
 		TareaLateral.setVisible(true);
 		painel2.add(TareaLateral);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 233, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		TnumeroLados = new JTextField();
-		eventPut(TnumeroLados);
 		TnumeroLados.setFont(fonte);
 		TnumeroLados.setBounds(213, 168, 145, 30);
 		TnumeroLados.setVisible(true);

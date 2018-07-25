@@ -31,22 +31,31 @@ public class Cone extends Figuras {
 	private double altura;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param geratriz
+	 */
 	public void setArea(double raio, double geratriz) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raio = raio;
-		this.geratriz = geratriz;
+		this.raio = Math.abs(raio);
+		this.geratriz = Math.abs(geratriz);
 
 		this.calcArea();
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da area
 		area = 3.14 * raio * (geratriz + raio);
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @param opcao3
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty())) {
 			return true;
@@ -56,10 +65,14 @@ public class Cone extends Figuras {
 
 	}
 
-	@Override
-	public void setVolume(double raio, double altura) {
-		this.raio = raio;
-		this.altura = altura;
+	/**
+	 * 
+	 * @param raio
+	 * @param altura
+	 */
+	protected void setVolume(double raio, double altura) {
+		this.raio = Math.abs(raio);
+		this.altura = Math.abs(altura);
 		calcVolume();
 	}
 
@@ -134,21 +147,18 @@ public class Cone extends Figuras {
 		painel2.add(Laltura);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
 		painel2.add(Traio);
 
 		Tgeratriz = new JTextField();
-		eventPut(Tgeratriz);
 		Tgeratriz.setFont(fonte);
 		Tgeratriz.setBounds(213, 173, 145, 30);
 		Tgeratriz.setVisible(true);
 		painel2.add(Tgeratriz);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

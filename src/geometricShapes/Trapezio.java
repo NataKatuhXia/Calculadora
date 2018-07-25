@@ -31,13 +31,16 @@ public class Trapezio extends Figuras {
 	private JTextField Taltura;
 	private JTextField TbaseMenor;
 
-	@Override
+	/**
+	 * 
+	 * @param basemaior
+	 * @param basemenor
+	 * @param altura
+	 */
 	public void setArea(double basemaior, double basemenor, double altura) {
-		// Metodo para o calculo da area dp trapezio, recebe como parametro base maior,
-		// base menor e altura
-		this.basemaior = basemaior;
-		this.basemenor = basemenor;
-		this.altura = altura;
+		this.basemaior = Math.abs(basemaior);
+		this.basemenor = Math.abs(basemenor);
+		this.altura = Math.abs(altura);
 
 		calcArea();
 
@@ -45,10 +48,17 @@ public class Trapezio extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
-		area = (((basemaior + basemenor) / 2) * altura);
+		area = (((basemaior + basemenor) * altura) / 2);
 	}
 
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @param opcao3
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty())) {
 			return true;
@@ -118,21 +128,18 @@ public class Trapezio extends Figuras {
 		painel2.add(LbaseMenor);
 
 		TbaseMaior = new JTextField();
-		eventPut(TbaseMaior);
 		TbaseMaior.setFont(fonte);
 		TbaseMaior.setBounds(213, 43, 145, 30);
 		TbaseMaior.setVisible(true);
 		painel2.add(TbaseMaior);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		TbaseMenor = new JTextField();
-		eventPut(TbaseMenor);
 		TbaseMenor.setBounds(213, 173, 145, 30);
 		TbaseMenor.setFont(fonte);
 		TbaseMenor.setVisible(true);

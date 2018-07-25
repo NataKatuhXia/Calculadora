@@ -28,19 +28,20 @@ public class ZonaEsferica extends Figuras {
 	private JTextField Traio;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param altura
+	 * @param raio
+	 */
 	public void setArea(double altura, double raio) {
-		this.altura = altura;
-		this.raio = raio;
+		this.altura = Math.abs(altura);
+		this.raio = Math.abs(raio);
 		calcArea();
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
-		area = 2 * raio * altura;
-		// É necessário dar um println + pi,porque o resultado quer que seja impresso o
-		// caracter pi.
+		area = 2 * 3.14 * raio * altura;
 	}
 
 	@Override
@@ -94,14 +95,12 @@ public class ZonaEsferica extends Figuras {
 		painel2.add(Laltura);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
 		painel2.add(Traio);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
@@ -116,7 +115,13 @@ public class ZonaEsferica extends Figuras {
 
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;

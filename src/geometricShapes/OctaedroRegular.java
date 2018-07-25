@@ -26,19 +26,21 @@ public class OctaedroRegular extends Figuras {
 	private double tamLado;
 	private JTextField Tlado;
 
-	@Override
+	/**
+	 * 
+	 * @param tamLado
+	 */
 	public void setVolume(double tamLado) {
-		// Metodo para o calculo do volume do octaedro regular, recebe como parametro
-		// comprimento das arestas
-		this.tamLado = tamLado;
+		this.tamLado = Math.abs(tamLado);
 		calcVolume();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param tamLado
+	 */
 	public void setArea(double tamLado) {
-		// Metodo para o calculo da area do octaedro regular, recebe como parametro
-		// comprimento das arestas
 		this.tamLado = tamLado;
 		calcArea();
 
@@ -46,17 +48,20 @@ public class OctaedroRegular extends Figuras {
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = ((tamLado * tamLado * tamLado) * Math.sqrt(2)) / 3;
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo do Area
 		area = 2 * tamLado * tamLado * Math.sqrt(3);
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -120,7 +125,6 @@ public class OctaedroRegular extends Figuras {
 		painel2.add(Llado);
 
 		Tlado = new JTextField();
-		eventPut(Tlado);
 		Tlado.setFont(fonte);
 		Tlado.setBounds(213, 43, 145, 30);
 		Tlado.setVisible(true);

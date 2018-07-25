@@ -27,21 +27,27 @@ public class Quadrado extends Figuras {
 	private double lado;
 	private JTextField Tlado;
 
-	@Override
+	/**
+	 * 
+	 * @param lado
+	 */
 	public void setArea(double lado) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.lado = lado;
+		this.lado = Math.abs(lado);
 		calcArea();
 
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = Math.pow(lado, 2);
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -99,7 +105,6 @@ public class Quadrado extends Figuras {
 		painel2.add(Llado);
 
 		Tlado = new JTextField();
-		eventPut(Tlado);
 		Tlado.setFont(fonte);
 		Tlado.setBounds(213, 43, 145, 30);
 		Tlado.setVisible(true);

@@ -29,22 +29,30 @@ public class Retangulo extends Figuras {
 	private JTextField Tbase;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param base
+	 * @param altura
+	 */
 	public void setArea(double base, double altura) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.base = base;
-		this.altura = altura;
+		this.base = Math.abs(base);
+		this.altura = Math.abs(altura);
 		calcArea();
 
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = (base * altura);
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -108,14 +116,12 @@ public class Retangulo extends Figuras {
 		painel2.add(Laltura);
 
 		Tbase = new JTextField();
-		eventPut(Tbase);
 		Tbase.setFont(fonte);
 		Tbase.setBounds(213, 43, 145, 30);
 		Tbase.setVisible(true);
 		painel2.add(Tbase);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

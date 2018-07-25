@@ -29,38 +29,46 @@ public class CunhaEsferica extends Figuras {
 	private JTextField Traio;
 	private JTextField Tangulo;
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param angulo
+	 */
 	public void setVolume(double raio, double angulo) {
-		// Metodo para o calculo do volume da Cunha esferica, recebe como parametro raio
-		// da esfera e o angulo da Cunha
-		this.raio = raio;
+		this.raio = Math.abs(raio);
 		this.angulo = angulo;
 		calcVolume();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 * @param angulo
+	 */
 	public void setArea(double raio, double angulo) {
-		// Metodo para o calculo do volume da Cunha esferica, recebe como parametro raio
-		// da esfera e o angulo da Cunha
-		this.raio = raio;
+		this.raio = Math.abs(raio);
 		this.angulo = angulo;
 		calcArea();
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = ((3.14 * Math.pow(raio, 2)) * angulo) / 90;
 	}
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
-		volume = ((angulo / 360) * ((4 * Math.PI)) * Math.pow(raio, 3));
+		volume = (3.14 * Math.pow(raio, 3) * angulo) / 270;
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -121,7 +129,6 @@ public class CunhaEsferica extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
@@ -134,7 +141,6 @@ public class CunhaEsferica extends Figuras {
 		painel2.add(Langulo);
 
 		Tangulo = new JTextField();
-		eventPut(Tangulo);
 		Tangulo.setFont(fonte);
 		Tangulo.setBounds(213, 108, 145, 30);
 		Tangulo.setVisible(true);

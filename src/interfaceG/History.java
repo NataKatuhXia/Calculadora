@@ -26,9 +26,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import dados.Directory;
+import dados.GetProperties;
 import dados.SaveData;
 
-public class History extends InterfaceGrafica {
+public class History extends GetProperties {
 
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private ArrayList<String[]> lista = new ArrayList<>();
@@ -41,6 +42,8 @@ public class History extends InterfaceGrafica {
 	private void criaJanela() {
 
 		frameHist.setJMenuBar((montaBarra()));
+
+		frameHist.setAlwaysOnTop(true);
 
 		frameHist.setIconImage(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))).getImage());
 

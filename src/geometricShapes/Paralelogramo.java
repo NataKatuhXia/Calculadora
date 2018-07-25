@@ -28,16 +28,26 @@ public class Paralelogramo extends Figuras {
 	private JTextField Tbase;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param altura
+	 * @param base
+	 */
 	public void setArea(double altura, double base) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.altura = altura;
-		this.base = base;
+
+		this.altura = Math.abs(altura);
+		this.base = Math.abs(base);
 		calcArea();
 
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -49,7 +59,6 @@ public class Paralelogramo extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = base * altura;
 	}
 
@@ -107,14 +116,12 @@ public class Paralelogramo extends Figuras {
 		painel2.add(Laltura);
 
 		Tbase = new JTextField();
-		eventPut(Tbase);
 		Tbase.setFont(fonte);
 		Tbase.setBounds(213, 43, 145, 30);
 		Tbase.setVisible(true);
 		painel2.add(Tbase);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);

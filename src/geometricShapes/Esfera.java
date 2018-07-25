@@ -27,37 +27,42 @@ public class Esfera extends Figuras {
 	private double raio;
 	private JTextField Traio;
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 */
 	public void setVolume(double raio) {
-		// Metodo para o calculo do volume da Esfera, recebe como parametro o raio da
-		// esfera
-		this.raio = raio;
+		this.raio = Math.abs(raio);
 		calcVolume();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param raio
+	 */
 	public void setArea(double raio) {
-		// Metodo para o calculo da area da Esfera, recebe como parametro o raio da
-		// esfera
-		this.raio = raio;
+		this.raio = Math.abs(raio);
 		calcArea();
 
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
-		area = 4 * 3.14 * (raio * raio);
+		area = 4 * 3.14 * (Math.pow(raio, 2));
 	}
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
-		volume = (4 * 3.14 * (raio * raio * raio)) / 3;
+		volume = (4 * 3.14 * (Math.pow(raio, 3))) / 3;
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao) {
 		if (!opcao.isEmpty()) {
 			return true;
@@ -121,7 +126,6 @@ public class Esfera extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);

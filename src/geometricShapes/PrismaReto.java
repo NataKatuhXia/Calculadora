@@ -30,21 +30,26 @@ public class PrismaReto extends Figuras {
 	private JTextField Taltura;
 	private JTextField Tpbase;
 
-	@Override
+	/**
+	 * 
+	 * @param altura
+	 * @param areaBase
+	 */
 	public void setVolume(double altura, double areaBase) {
-		// Metodo para o calculo do volume do prisma reto, recebe como parametro altura
-		// e area da base
-		this.altura = altura;
-		this.areaBase = areaBase;
+		this.altura = Math.abs(altura);
+		this.areaBase = Math.abs(areaBase);
 		calcVolume();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param altura
+	 * @param perimetroBase
+	 * @param areaBase
+	 */
 	public void setArea(double altura, double perimetroBase, double areaBase) {
-		// Metodo para o calculo da area do prisma reto, recebe como parametro altura,
-		// perimetro da base e area da base
-		this.altura = altura;
+		this.altura = Math.abs(altura);
 		this.areaBase = areaBase;
 		this.perimetroBase = perimetroBase;
 		calcArea();
@@ -53,17 +58,22 @@ public class PrismaReto extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
 		area = (altura * perimetroBase) + (2 * areaBase); // Area lateral mais area da base x 2
 	}
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = areaBase * altura;
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @param opcao3
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty())) {
 			return true;
@@ -139,21 +149,18 @@ public class PrismaReto extends Figuras {
 		painel2.add(LPbase);
 
 		Tabase = new JTextField();
-		eventPut(Tabase);
 		Tabase.setFont(fonte);
 		Tabase.setBounds(213, 43, 145, 30);
 		Tabase.setVisible(true);
 		painel2.add(Tabase);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 108, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		Tpbase = new JTextField();
-		eventPut(Tpbase);
 		Tpbase.setFont(fonte);
 		Tpbase.setBounds(213, 173, 145, 30);
 		Tpbase.setVisible(true);

@@ -28,23 +28,31 @@ public class SetorCircular extends Figuras {
 	private JTextField Traio;
 	private JTextField Tangulo;
 
-	@Override
+	/**
+	 * 
+	 * @param angulocentral
+	 * @param raio
+	 */
 	public void setArea(double angulocentral, double raio) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.angulocentral = angulocentral;
-		this.raio = raio;
+		this.angulocentral = Math.abs(angulocentral);
+		this.raio = Math.abs(raio);
 
 		calcArea();
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da Area
-		area = (angulocentral) * ((raio * raio)) / 360;
+		area = angulocentral * 3.14 * (Math.pow(raio, 2)) / 360;
 
 	}
 
-	@Override
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty())) {
 			return true;
@@ -102,7 +110,6 @@ public class SetorCircular extends Figuras {
 		painel2.add(Lraio);
 
 		Traio = new JTextField();
-		eventPut(Traio);
 		Traio.setFont(fonte);
 		Traio.setBounds(213, 43, 145, 30);
 		Traio.setVisible(true);
@@ -115,7 +122,6 @@ public class SetorCircular extends Figuras {
 		painel2.add(Langulo);
 
 		Tangulo = new JTextField();
-		eventPut(Tangulo);
 		Tangulo.setFont(fonte);
 		Tangulo.setBounds(213, 108, 145, 30);
 		Tangulo.setVisible(true);

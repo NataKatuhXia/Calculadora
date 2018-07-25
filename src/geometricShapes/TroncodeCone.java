@@ -32,41 +32,57 @@ public class TroncodeCone extends Figuras {
 	private JTextField Tgeratriz;
 	private JTextField Taltura;
 
-	@Override
+	/**
+	 * 
+	 * @param raioMaior
+	 * @param raioMenor
+	 * @param geratriz
+	 */
 	public void setArea(double raioMaior, double raioMenor, double geratriz) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raioMaior = raioMaior;
-		this.raioMenor = raioMenor;
-		this.geratriz = geratriz;
+		this.raioMaior = Math.abs(raioMaior);
+		this.raioMenor = Math.abs(raioMenor);
+		this.geratriz = Math.abs(geratriz);
 
 		this.calcArea();
 
 	}
 
-	@Override
+	/**
+	 * 
+	 * @param raioMaior
+	 * @param raioMenor
+	 * @param altura
+	 */
 	public void setVolume(double raioMaior, double raioMenor, double altura) {
-		// Metodo para receber os valores necessarios para realizar os calculos
-		this.raioMaior = raioMaior;
-		this.raioMenor = raioMenor;
-		this.altura = altura;
+		this.raioMaior = Math.abs(raioMaior);
+		this.raioMenor = Math.abs(raioMenor);
+		this.altura = Math.abs(altura);
 		this.calcVolume();
 	}
 
 	@Override
 	protected void calcVolume() {
-		// Calculo do Volume
 		volume = 3.14 * (altura / 3) * (Math.pow(raioMaior, 2) + raioMaior * raioMenor + Math.pow(raioMenor, 2));
 	}
 
 	@Override
 	protected void calcArea() {
-		// Calculo da area
 		area = 3.14 * ((raioMaior + raioMenor) * geratriz + Math.pow(raioMaior, 2) + Math.pow(raioMenor, 2));
 	}
 
+	/**
+	 * Metodo responsavel por verificar se algum campo não foi preenchido.
+	 * 
+	 * @param opcao
+	 * @param opcao2
+	 * @param opcao3
+	 * @param opcao4
+	 * @return boolean
+	 */
 	protected boolean checkinformation(String opcao, String opcao2, String opcao3, String opcao4) {
 		if (!opcao.isEmpty() && (!opcao2.isEmpty()) && (!opcao3.isEmpty()) && (!opcao4.isEmpty())) {
-			return true;
+			return (Double.parseDouble(opcao) > 0) && (Double.parseDouble(opcao2) > 0) && (Double.parseDouble(opcao3) > 0)
+					&& (Double.parseDouble(opcao4) > 0);
 		} else {
 			return false;
 		}
@@ -147,28 +163,24 @@ public class TroncodeCone extends Figuras {
 		painel2.add(Laltura);
 
 		TraioMaior = new JTextField();
-		eventPut(TraioMaior);
 		TraioMaior.setFont(fonte);
 		TraioMaior.setBounds(213, 38, 145, 30);
 		TraioMaior.setVisible(true);
 		painel2.add(TraioMaior);
 
 		TraioMenor = new JTextField();
-		eventPut(TraioMenor);
 		TraioMenor.setFont(fonte);
 		TraioMenor.setBounds(213, 103, 145, 30);
 		TraioMenor.setVisible(true);
 		painel2.add(TraioMenor);
 
 		Taltura = new JTextField();
-		eventPut(Taltura);
 		Taltura.setFont(fonte);
 		Taltura.setBounds(213, 233, 145, 30);
 		Taltura.setVisible(true);
 		painel2.add(Taltura);
 
 		Tgeratriz = new JTextField();
-		eventPut(Tgeratriz);
 		Tgeratriz.setFont(fonte);
 		Tgeratriz.setBounds(213, 168, 145, 30);
 		Tgeratriz.setVisible(true);
