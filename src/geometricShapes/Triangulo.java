@@ -83,7 +83,7 @@ public class Triangulo extends Figuras {
 						painel2.repaint();
 						salvarDates();
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Classe responsavel por carregar as urls de todo programa como as
+ * Classe responsavel por carregar os diretórios de todo programa como as
  * imagens,ícones e arquivos txt através de uma key.
  * 
  * @author R-CALC

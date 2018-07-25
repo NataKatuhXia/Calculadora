@@ -66,7 +66,7 @@ public class ZonaEsferica extends Figuras {
 						salvarDates();
 						painel2.repaint();
 					} catch (NumberFormatException | IOException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					}
 				} else {

@@ -43,8 +43,6 @@ public class History extends GetProperties {
 
 		frameHist.setJMenuBar((montaBarra()));
 
-		frameHist.setAlwaysOnTop(true);
-
 		frameHist.setIconImage(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))).getImage());
 
 		JPanel painelBotoes = new JPanel();

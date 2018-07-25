@@ -36,7 +36,7 @@ public class CunhaEsferica extends Figuras {
 	 */
 	public void setVolume(double raio, double angulo) {
 		this.raio = Math.abs(raio);
-		this.angulo = angulo;
+		this.angulo = Math.abs(angulo);
 		calcVolume();
 
 	}
@@ -48,7 +48,7 @@ public class CunhaEsferica extends Figuras {
 	 */
 	public void setArea(double raio, double angulo) {
 		this.raio = Math.abs(raio);
-		this.angulo = angulo;
+		this.angulo = Math.abs(angulo);
 		calcArea();
 	}
 
@@ -107,7 +107,7 @@ public class CunhaEsferica extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException | IOException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					}
 				} else {

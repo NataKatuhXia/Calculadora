@@ -54,12 +54,12 @@ public class Cilindro extends Figuras {
 
 	@Override
 	protected void calcArea() {
-		area = (double) (2 * 3.14 * raio * (raio + altura));
+		area = (double) (2 * Constante.PI * raio * (raio + altura));
 	}
 
 	@Override
 	protected void calcVolume() {
-		volume = (double) (3.14 * altura * Math.pow(raio, 2));
+		volume = (double) (Constante.PI * altura * Math.pow(raio, 2));
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class Cilindro extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

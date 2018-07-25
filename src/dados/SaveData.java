@@ -45,7 +45,7 @@ public class SaveData extends GetProperties {
 	/**
 	 * Construtor para receber os parâmetros que serão salvos
 	 */
-	public SaveData(String nome, String area) throws IOException {
+	public SaveData(String nome, String area) {
 		this(nome, area, "-");
 	}
 

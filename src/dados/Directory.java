@@ -40,7 +40,8 @@ public class Directory extends GetProperties {
 			}
 		});
 
-		file.setAcceptAllFileFilterUsed(false); // Bloquear a opção todos os Arquivos, ao salvar o programa
+		// Bloquear a opção todos os Arquivos, ao salvar o programa
+		file.setAcceptAllFileFilterUsed(false); 
 		file.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int i = file.showSaveDialog(null);
 		if (i != 1) {

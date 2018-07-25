@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
+
+import dados.GetProperties;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,6 +22,7 @@ public class AboutFrame extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private java.util.Properties prop = GetProperties.getProp();
 
 	/**
 	 * Create the frame.
@@ -27,7 +31,7 @@ public class AboutFrame extends JInternalFrame {
 		setRootPaneCheckingEnabled(false);
 		getMostRecentFocusOwner();
 		getContentPane().setBackground(Color.WHITE);
-		setFrameIcon(new ImageIcon(AboutFrame.class.getResource("/icons/JFrame.png")));
+		setFrameIcon(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))));
 		try {
 			setIcon(true);
 		} catch (PropertyVetoException e) {
@@ -40,7 +44,7 @@ public class AboutFrame extends JInternalFrame {
 
 		Font fonte = new Font("Times", Font.CENTER_BASELINE, 30);
 		JLabel lblTitle1 = new JLabel("Calculadora Geom\u00E9trica");
-		lblTitle1.setIcon(new ImageIcon(AboutFrame.class.getResource("/icons/About.png")));
+		lblTitle1.setIcon(new ImageIcon(AboutFrame.class.getResource(prop.getProperty(("icons.Iabout")))));
 		lblTitle1.setFont(fonte);
 		lblTitle1.setBounds(59, 11, 391, 49);
 		getContentPane().add(lblTitle1);
@@ -56,7 +60,7 @@ public class AboutFrame extends JInternalFrame {
 		getContentPane().add(lblTitulo2);
 
 		JLabel imageTela = new JLabel("");
-		imageTela.setIcon(new ImageIcon(AboutFrame.class.getResource("/icons/JFrame.png")));
+		imageTela.setIcon(new ImageIcon(getClass().getResource(prop.getProperty("icons.JFrame"))));
 		imageTela.setBounds(35, 103, 56, 54);
 		getContentPane().add(imageTela);
 
@@ -76,6 +80,7 @@ public class AboutFrame extends JInternalFrame {
 						+ " Este trabalho foi elaborado pela equipe R-CAL, composta pelos discentes André, Cainan Lima, Luis Fernando Guerra, "
 						+ "Matheus Barbosa e Rafael Bahia.");
 		textoApresentacao.setBounds(101, 143, 361, 181);
+		textoApresentacao.setBackground(Color.WHITE);
 		getContentPane().add(textoApresentacao);
 
 		JButton btnokay = new JButton("OK");

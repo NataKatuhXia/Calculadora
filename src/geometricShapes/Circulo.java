@@ -54,18 +54,17 @@ public class Circulo extends Figuras {
 	 */
 	public void setComprimento(double raio) {
 		this.raio = Math.abs(raio);
-
 		calcComp();
 
 	}
 
 	@Override
 	protected void calcArea() {
-		area = 3.14 * Math.pow(raio, 2);
+		area = Constante.PI * Math.pow(raio, 2);
 	}
 
 	private void calcComp() {
-		this.comprimento = 2 * 3.14 * raio;
+		this.comprimento = 2 * Constante.PI * raio;
 	}
 
 	/**
@@ -112,7 +111,7 @@ public class Circulo extends Figuras {
 						salvarDates();
 
 					} catch (NumberFormatException x) {
-						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números inteiros!",
+						JOptionPane.showMessageDialog(null, "Por favor, preencha apenas com números!",
 								"Aviso!", JOptionPane.WARNING_MESSAGE);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

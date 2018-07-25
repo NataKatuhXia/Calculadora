@@ -52,112 +52,112 @@ public class Formulario {
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 2) {
+		else if (opcao == 2) {
 			Circulo fig = new Circulo();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 3) {
+		else if (opcao == 3) {
 			Cone fig = new Cone();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 4) {
+		else if (opcao == 4) {
 			CoroaCircular fig = new CoroaCircular();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 5) {
+		else if (opcao == 5) {
 			Cubo fig = new Cubo();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 6) {
+		else if (opcao == 6) {
 			CunhaEsferica fig = new CunhaEsferica();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 7) {
+		else if (opcao == 7) {
 			Esfera fig = new Esfera();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 8) {
+		else if (opcao == 8) {
 			Losango fig = new Losango();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 9) {
+		else if (opcao == 9) {
 			OctaedroRegular fig = new OctaedroRegular();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 10) {
+		else if (opcao == 10) {
 			Paralelepipedo fig = new Paralelepipedo();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 11) {
+		else if (opcao == 11) {
 			Paralelogramo fig = new Paralelogramo();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 12) {
+		else if (opcao == 12) {
 			Piramide fig = new Piramide();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 13) {
+		else if (opcao == 13) {
 			PoligonoRegular fig = new PoligonoRegular();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 14) {
+		else if (opcao == 14) {
 			PrismaReto fig = new PrismaReto();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 15) {
+		else if (opcao == 15) {
 			Quadrado fig = new Quadrado();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 16) {
+		else if (opcao == 16) {
 			Retangulo fig = new Retangulo();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 17) {
+		else if (opcao == 17) {
 			SetorCircular fig = new SetorCircular();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 18) {
+		else if (opcao == 18) {
 			TampaEsferica fig = new TampaEsferica();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 19) {
+		else if (opcao == 19) {
 			TetraedroRegular fig = new TetraedroRegular();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 20) {
+		else if (opcao == 20) {
 			Trapezio fig = new Trapezio();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 21) {
+		else if (opcao == 21) {
 			Triangulo fig = new Triangulo();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 22) {
+		else if (opcao == 22) {
 			TroncodeCone fig = new TroncodeCone();
 			painel2 = fig.montaRequisitos();
 		}
 
-		if (opcao == 23) {
+		else if (opcao == 23) {
 			ZonaEsferica fig = new ZonaEsferica();
 			painel2 = fig.montaRequisitos();
 		}
